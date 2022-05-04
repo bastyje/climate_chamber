@@ -1,0 +1,50 @@
+Drawable.hpp:132:23:virtual touchgfx::Drawable* touchgfx::Drawable::getFirstChild()	0	static
+Drawable.hpp:298:18:virtual void touchgfx::Drawable::setX(int16_t)	0	static
+Drawable.hpp:310:18:virtual void touchgfx::Drawable::setY(int16_t)	0	static
+Drawable.hpp:339:18:virtual void touchgfx::Drawable::setWidth(int16_t)	0	static
+Drawable.hpp:351:18:virtual void touchgfx::Drawable::setHeight(int16_t)	0	static
+Drawable.hpp:361:18:virtual void touchgfx::Drawable::childGeometryChanged()	0	static
+Drawable.hpp:372:18:virtual void touchgfx::Drawable::handleClickEvent(const touchgfx::ClickEvent&)	0	static
+Drawable.hpp:383:18:virtual void touchgfx::Drawable::handleGestureEvent(const touchgfx::GestureEvent&)	0	static
+Drawable.hpp:471:18:virtual void touchgfx::Drawable::handleDragEvent(const touchgfx::DragEvent&)	0	static
+Drawable.hpp:481:18:virtual void touchgfx::Drawable::handleTickEvent()	0	static
+Drawable.hpp:568:18:virtual void touchgfx::Drawable::moveTo(int16_t, int16_t)	4	static
+Drawable.hpp:683:18:virtual void touchgfx::Drawable::setupDrawChain(const touchgfx::Rect&, touchgfx::Drawable**)	0	static
+Container.hpp:165:23:virtual touchgfx::Drawable* touchgfx::Container::getFirstChild()	0	static
+Widget.hpp:47:18:virtual void touchgfx::Widget::getLastChild(int16_t, int16_t, touchgfx::Drawable**)	0	static
+TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	0	static
+AbstractButtonContainer.hpp:114:18:virtual void touchgfx::AbstractButtonContainer::handlePressedUpdated()	0	static
+AbstractButtonContainer.hpp:119:18:virtual void touchgfx::AbstractButtonContainer::handleAlphaUpdated()	0	static
+AbstractButtonContainer.hpp:34:7:touchgfx::AbstractButtonContainer::~AbstractButtonContainer()	0	static
+tempWindowBase.hpp:23:18:virtual void tempWindowBase::toggleTempBtn()	0	static
+ClickButtonTrigger.hpp:35:7:touchgfx::ClickButtonTrigger::~ClickButtonTrigger()	0	static
+ImageButtonStyle.hpp:45:7:touchgfx::ImageButtonStyle<touchgfx::ClickButtonTrigger>::~ImageButtonStyle()	0	static
+Callback.hpp:357:8:touchgfx::Callback<tempWindowBase, const touchgfx::AbstractButtonContainer&>::~Callback()	0	static
+TextButtonStyle.hpp:43:7:touchgfx::TextButtonStyle<touchgfx::ImageButtonStyle<touchgfx::ClickButtonTrigger> >::~TextButtonStyle()	0	static
+Callback.hpp:386:18:void touchgfx::Callback<dest_type, T1, void, void>::execute(T1) [with dest_type = tempWindowBase; T1 = const touchgfx::AbstractButtonContainer&]	8	static
+Callback.hpp:396:18:bool touchgfx::Callback<dest_type, T1, void, void>::isValid() const [with dest_type = tempWindowBase; T1 = const touchgfx::AbstractButtonContainer&]	0	static
+TextButtonStyle.hpp:145:18:void touchgfx::TextButtonStyle<T>::handleAlphaUpdated() [with T = touchgfx::ImageButtonStyle<touchgfx::ClickButtonTrigger>]	0	static
+ImageButtonStyle.hpp:104:18:void touchgfx::ImageButtonStyle<T>::handleAlphaUpdated() [with T = touchgfx::ClickButtonTrigger]	0	static
+ImageButtonStyle.hpp:97:18:void touchgfx::ImageButtonStyle<T>::handlePressedUpdated() [with T = touchgfx::ClickButtonTrigger]	0	static
+TextButtonStyle.hpp:138:18:void touchgfx::TextButtonStyle<T>::handlePressedUpdated() [with T = touchgfx::ImageButtonStyle<touchgfx::ClickButtonTrigger>]	8	static
+TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	8	static
+AbstractButtonContainer.hpp:34:7:virtual touchgfx::AbstractButtonContainer::~AbstractButtonContainer()	8	static
+ClickButtonTrigger.hpp:35:7:virtual touchgfx::ClickButtonTrigger::~ClickButtonTrigger()	8	static
+ImageButtonStyle.hpp:45:7:virtual touchgfx::ImageButtonStyle<touchgfx::ClickButtonTrigger>::~ImageButtonStyle()	8	static
+TextButtonStyle.hpp:43:7:virtual touchgfx::TextButtonStyle<touchgfx::ImageButtonStyle<touchgfx::ClickButtonTrigger> >::~TextButtonStyle()	8	static
+Callback.hpp:357:8:virtual touchgfx::Callback<tempWindowBase, const touchgfx::AbstractButtonContainer&>::~Callback()	8	static
+tempWindowBase.cpp:43:6:virtual void tempWindowBase::initialize()	8	static
+AbstractButtonContainer.hpp:99:18:virtual void touchgfx::AbstractButtonContainer::executeAction()	8	static
+tempWindowBase.cpp:49:6:void tempWindowBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer&)	0	static
+ClickButtonTrigger.hpp:47:18:virtual void touchgfx::ClickButtonTrigger::handleClickEvent(const touchgfx::ClickEvent&)	16	static
+Drawable.hpp:48:5:touchgfx::Drawable::Drawable()	0	static
+Drawable.hpp:326:10:void touchgfx::Drawable::setXY(int16_t, int16_t)	16	static
+Drawable.hpp:394:10:void touchgfx::Drawable::setWidthHeight(int16_t, int16_t)	16	static
+ImageButtonStyle.hpp:61:18:void touchgfx::ImageButtonStyle<T>::setBitmaps(const touchgfx::Bitmap&, const touchgfx::Bitmap&) [with T = touchgfx::ClickButtonTrigger]	16	static
+Image.hpp:50:5:touchgfx::Image::Image(const touchgfx::Bitmap&)	16	static
+digits.hpp:17:13:digits::~digits()	16	static
+tempWindowBase.hpp:17:13:tempWindowBase::~tempWindowBase()	16	static
+tempWindowBase.hpp:17:13:virtual tempWindowBase::~tempWindowBase()	8	static
+digits.hpp:17:13:virtual digits::~digits()	8	static
+TextButtonStyle.hpp:46:5:touchgfx::TextButtonStyle<T>::TextButtonStyle() [with T = touchgfx::ImageButtonStyle<touchgfx::ClickButtonTrigger>]	32	static
+tempWindowBase.cpp:9:1:tempWindowBase::tempWindowBase()	64	static

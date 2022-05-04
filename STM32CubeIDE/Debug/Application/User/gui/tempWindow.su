@@ -1,0 +1,22 @@
+Drawable.hpp:298:18:virtual void touchgfx::Drawable::setX(int16_t)	0	static
+Drawable.hpp:310:18:virtual void touchgfx::Drawable::setY(int16_t)	0	static
+Drawable.hpp:339:18:virtual void touchgfx::Drawable::setWidth(int16_t)	0	static
+Drawable.hpp:351:18:virtual void touchgfx::Drawable::setHeight(int16_t)	0	static
+Drawable.hpp:361:18:virtual void touchgfx::Drawable::childGeometryChanged()	0	static
+Drawable.hpp:372:18:virtual void touchgfx::Drawable::handleClickEvent(const touchgfx::ClickEvent&)	0	static
+Drawable.hpp:383:18:virtual void touchgfx::Drawable::handleGestureEvent(const touchgfx::GestureEvent&)	0	static
+Drawable.hpp:471:18:virtual void touchgfx::Drawable::handleDragEvent(const touchgfx::DragEvent&)	0	static
+Drawable.hpp:481:18:virtual void touchgfx::Drawable::handleTickEvent()	0	static
+Drawable.hpp:568:18:virtual void touchgfx::Drawable::moveTo(int16_t, int16_t)	4	static
+Container.hpp:165:23:virtual touchgfx::Drawable* touchgfx::Container::getFirstChild()	0	static
+tempWindow.cpp:8:6:virtual void tempWindow::initialize()	8	static
+tempWindow.cpp:14:6:virtual void tempWindow::toggleTempBtn()	0	static
+tempWindow.cpp:28:6:virtual void tempWindow::changeValue(int)	0	static
+tempWindow.cpp:33:6:virtual void tempWindow::changeCursorPosition(int)	0	static
+digits.hpp:17:13:digits::~digits()	16	static
+digits.hpp:17:13:virtual digits::~digits()	8	static
+tempWindowBase.hpp:17:13:tempWindowBase::~tempWindowBase()	16	static
+tempWindow.hpp:10:13:tempWindow::~tempWindow()	8	static
+tempWindow.hpp:10:13:virtual tempWindow::~tempWindow()	8	static
+tempWindowBase.hpp:17:13:virtual tempWindowBase::~tempWindowBase()	8	static
+tempWindow.cpp:3:1:tempWindow::tempWindow()	8	static

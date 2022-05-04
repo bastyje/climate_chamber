@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="texts.xsd" Version="4.18.1">
+  <Texts>
+    <Text Id="__SingleUse_4FSJ" TypographyId="annotations" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">°C</Translation>
+    </Text>
+    <Text Id="__SingleUse_A5L9" TypographyId="annotations" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">%</Translation>
+    </Text>
+    <Text Id="__SingleUse_QJCN" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">100</Translation>
+    </Text>
+    <Text Id="__SingleUse_1K9Q" TypographyId="annotations" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">°C</Translation>
+    </Text>
+    <Text Id="__SingleUse_YLAS" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">100</Translation>
+    </Text>
+    <Text Id="__SingleUse_TA9L" TypographyId="annotations" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">°C</Translation>
+    </Text>
+    <Text Id="__SingleUse_3RTU" TypographyId="title" Alignment="Center" Direction="LTR">
+      <Translation Language="GB">Humidity</Translation>
+    </Text>
+    <Text Id="__SingleUse_BUPW" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_CQDD" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_CAXM" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_UKG6" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_2DET" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_FBUL" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_RY1A" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_E2J5" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_4QKK" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_H6OY" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_XX7I" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_3CS0" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_ADEO" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_ZDHC" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_4JI2" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_AKCL" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_23LJ" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_W5X3" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_ROAE" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_NJ50" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">New Text</Translation>
+    </Text>
+    <Text Id="__SingleUse_M6VE" TypographyId="title" Alignment="Center" Direction="LTR">
+      <Translation Language="GB">Temperature</Translation>
+    </Text>
+    <Text Id="__SingleUse_VEFE" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">&lt;hundreds&gt;</Translation>
+    </Text>
+    <Text Id="__SingleUse_KLYP" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">&lt;tens&gt;</Translation>
+    </Text>
+    <Text Id="__SingleUse_R12E" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">&lt;ones&gt;</Translation>
+    </Text>
+    <Text Id="__SingleUse_UIUJ" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">0</Translation>
+    </Text>
+    <Text Id="__SingleUse_4DSA" TypographyId="float" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">.</Translation>
+    </Text>
+    <Text Id="__SingleUse_YVJJ" TypographyId="float" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">&lt;decimals&gt;</Translation>
+    </Text>
+    <Text Id="__SingleUse_ATWK" TypographyId="float" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">0</Translation>
+    </Text>
+    <Text Id="__SingleUse_KFJL" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">0</Translation>
+    </Text>
+    <Text Id="__SingleUse_6T83" TypographyId="value" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">0</Translation>
+    </Text>
+  </Texts>
+  <Typographies>
+    <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" FallbackCharacter="?" />
+    <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" FallbackCharacter="?" />
+    <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" FallbackCharacter="?" />
+    <Typography Id="value" Font="consola.ttf" Size="28" Bpp="8" FallbackCharacter="?" WildcardCharacterRanges="0-9" />
+    <Typography Id="title" Font="consolab.ttf" Size="24" Bpp="4" FallbackCharacter="?" />
+    <Typography Id="annotations" Font="consola.ttf" Size="14" Bpp="4" FallbackCharacter="?" />
+    <Typography Id="float" Font="consola.ttf" Size="12" Bpp="4" FallbackCharacter="?" WildcardCharacterRanges="0-9" />
+  </Typographies>
+</TextDatabase>

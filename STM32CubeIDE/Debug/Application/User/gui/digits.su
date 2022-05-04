@@ -1,0 +1,32 @@
+Drawable.hpp:132:23:virtual touchgfx::Drawable* touchgfx::Drawable::getFirstChild()	0	static
+Drawable.hpp:298:18:virtual void touchgfx::Drawable::setX(int16_t)	0	static
+Drawable.hpp:310:18:virtual void touchgfx::Drawable::setY(int16_t)	0	static
+Drawable.hpp:339:18:virtual void touchgfx::Drawable::setWidth(int16_t)	0	static
+Drawable.hpp:351:18:virtual void touchgfx::Drawable::setHeight(int16_t)	0	static
+Drawable.hpp:361:18:virtual void touchgfx::Drawable::childGeometryChanged()	0	static
+Drawable.hpp:372:18:virtual void touchgfx::Drawable::handleClickEvent(const touchgfx::ClickEvent&)	0	static
+Drawable.hpp:383:18:virtual void touchgfx::Drawable::handleGestureEvent(const touchgfx::GestureEvent&)	0	static
+Drawable.hpp:471:18:virtual void touchgfx::Drawable::handleDragEvent(const touchgfx::DragEvent&)	0	static
+Drawable.hpp:481:18:virtual void touchgfx::Drawable::handleTickEvent()	0	static
+Drawable.hpp:568:18:virtual void touchgfx::Drawable::moveTo(int16_t, int16_t)	4	static
+Drawable.hpp:683:18:virtual void touchgfx::Drawable::setupDrawChain(const touchgfx::Rect&, touchgfx::Drawable**)	0	static
+Container.hpp:165:23:virtual touchgfx::Drawable* touchgfx::Container::getFirstChild()	0	static
+Widget.hpp:47:18:virtual void touchgfx::Widget::getLastChild(int16_t, int16_t, touchgfx::Drawable**)	0	static
+TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	0	static
+digits.hpp:17:13:digits::~digits()	16	static
+digits.cpp:31:6:virtual void digits::changeCursorPosition(int)	0	static
+digits.cpp:39:6:virtual void digits::changeValue(int)	0	static
+digits.cpp:74:6:virtual void digits::initializeValue(float)	24	static
+digits.cpp:84:6:virtual void digits::uploadValue(int, int, int, int)	4	static
+digits.cpp:108:6:virtual void digits::showCursor()	0	static
+digits.cpp:113:6:virtual void digits::resetCursor()	0	static
+TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	8	static
+digits.hpp:17:13:virtual digits::~digits()	8	static
+digits.cpp:26:6:virtual void digits::initialize()	0	static
+digits.cpp:94:6:virtual void digits::updateValue()	8	static
+Box.hpp:29:7:constexpr touchgfx::Box::Box(const touchgfx::Box&)	8	static
+TextAreaWithWildcard.hpp:34:7:constexpr touchgfx::TextAreaWithOneWildcard::TextAreaWithOneWildcard(const touchgfx::TextAreaWithOneWildcard&)	8	static
+Types.hpp:384:10:void touchgfx::Vector<T, capacity>::add(T) [with T = touchgfx::Box; short unsigned int capacity = 4]	8	static
+Types.hpp:384:10:void touchgfx::Vector<T, capacity>::add(T) [with T = touchgfx::TextAreaWithOneWildcard; short unsigned int capacity = 4]	8	static
+Types.hpp:384:10:void touchgfx::Vector<T, capacity>::add(T) [with T = int; short unsigned int capacity = 4]	8	static
+digits.cpp:4:1:digits::digits()	88	static

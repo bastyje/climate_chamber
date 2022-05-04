@@ -1,0 +1,613 @@
+{
+  "Application": {
+    "Screens": [
+      {
+        "Name": "mainScreen",
+        "Components": [
+          {
+            "Type": "Box",
+            "Name": "background",
+            "Width": 240,
+            "Height": 320
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "left",
+            "X": 20,
+            "Y": 220,
+            "Width": 60,
+            "Height": 80,
+            "ButtonTrigger": {
+              "Type": "ClickButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "X": 10,
+                "Y": 20,
+                "IconReleased": "left.png",
+                "IconPressed": "left.png"
+              },
+              {
+                "Type": "ImageButtonStyle",
+                "ImageReleased": "btn_left.png",
+                "ImagePressed": "btn_left_clicked.png"
+              }
+            ]
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "right",
+            "X": 160,
+            "Y": 220,
+            "Width": 60,
+            "Height": 80,
+            "ButtonTrigger": {
+              "Type": "ClickButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "X": 10,
+                "Y": 20,
+                "IconReleased": "right.png",
+                "IconPressed": "right.png"
+              },
+              {
+                "Type": "ImageButtonStyle",
+                "ImageReleased": "btn_right.png",
+                "ImagePressed": "btn_right_clicked.png"
+              }
+            ]
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "up",
+            "X": 82,
+            "Y": 220,
+            "Width": 76,
+            "Height": 39,
+            "ButtonTrigger": {
+              "Type": "ClickButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "X": 18,
+                "IconReleased": "plus.png",
+                "IconPressed": "plus.png"
+              },
+              {
+                "Type": "ImageButtonStyle",
+                "ImageReleased": "btn_up-down.png",
+                "ImagePressed": "btn_up-down_clicked.png"
+              }
+            ]
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "down",
+            "X": 82,
+            "Y": 261,
+            "Width": 76,
+            "Height": 39,
+            "ButtonTrigger": {
+              "Type": "ClickButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "X": 18,
+                "IconReleased": "minus.png",
+                "IconPressed": "minus.png"
+              },
+              {
+                "Type": "ImageButtonStyle",
+                "ImageReleased": "btn_up-down.png",
+                "ImagePressed": "btn_up-down_clicked.png"
+              }
+            ]
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "humWindow1",
+            "X": 20,
+            "Y": 120,
+            "Width": 200,
+            "Height": 80,
+            "CustomContainerDefinitionName": "humWindow"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "tempWindow1",
+            "X": 20,
+            "Y": 20,
+            "Width": 200,
+            "Height": 80,
+            "CustomContainerDefinitionName": "tempWindow"
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "up"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "upBtnClicked"
+            }
+          },
+          {
+            "InteractionName": "Interaction2",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "down"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "downBtnClicked"
+            }
+          },
+          {
+            "InteractionName": "Interaction3",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "right"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "rightBtnClicked"
+            }
+          },
+          {
+            "InteractionName": "Interaction4",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "left"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "leftBtnClicked"
+            }
+          }
+        ]
+      }
+    ],
+    "CustomContainerDefinitions": [
+      {
+        "Name": "tempWindow",
+        "X": 20,
+        "Y": 20,
+        "Width": 200,
+        "Height": 80,
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "image1",
+            "Y": 30,
+            "Width": 200,
+            "Height": 50,
+            "RelativeFilename": "disp_back.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "image3",
+            "X": 107,
+            "Y": 37,
+            "Width": 86,
+            "Height": 36,
+            "RelativeFilename": "disp_right.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "image2",
+            "X": 7,
+            "Y": 37,
+            "Width": 86,
+            "Height": 36,
+            "RelativeFilename": "disp_left.png"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "tempDisp1",
+            "X": 7,
+            "Y": 37,
+            "Width": 86,
+            "Height": 36,
+            "CustomContainerDefinitionName": "tempDisp"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "tempDisp2",
+            "X": 107,
+            "Y": 37,
+            "Width": 86,
+            "Height": 36,
+            "CustomContainerDefinitionName": "tempDisp"
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "flexButton1",
+            "Width": 200,
+            "Height": 30,
+            "ButtonTrigger": {
+              "Type": "ClickButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "TextButtonStyle",
+                "TextId": "__SingleUse_M6VE",
+                "TextRotation": "0",
+                "ColorReleased": {
+                  "Red": 10,
+                  "Green": 10,
+                  "Blue": 10
+                },
+                "ColorPressed": {
+                  "Red": 10,
+                  "Green": 10,
+                  "Blue": 10
+                }
+              },
+              {
+                "Type": "ImageButtonStyle",
+                "ImageReleased": "label_bacground.png",
+                "ImagePressed": "label_bacground_clicked.png"
+              }
+            ]
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "flexButton1"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "toggleTempBtn"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "humWindow",
+        "X": 20,
+        "Y": 20,
+        "Width": 200,
+        "Height": 80,
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "image1",
+            "Y": 30,
+            "Width": 200,
+            "Height": 50,
+            "RelativeFilename": "disp_back.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "image3",
+            "X": 107,
+            "Y": 37,
+            "Width": 86,
+            "Height": 36,
+            "RelativeFilename": "disp_right.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "image2",
+            "X": 7,
+            "Y": 37,
+            "Width": 86,
+            "Height": 36,
+            "RelativeFilename": "disp_left.png"
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "flexButton1",
+            "Width": 200,
+            "Height": 30,
+            "ButtonTrigger": {
+              "Type": "ClickButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "TextButtonStyle",
+                "TextId": "__SingleUse_3RTU",
+                "TextRotation": "0",
+                "ColorReleased": {
+                  "Red": 10,
+                  "Green": 10,
+                  "Blue": 10
+                },
+                "ColorPressed": {
+                  "Red": 10,
+                  "Green": 10,
+                  "Blue": 10
+                }
+              },
+              {
+                "Type": "ImageButtonStyle",
+                "ImageReleased": "label_bacground.png",
+                "ImagePressed": "label_bacground_clicked.png"
+              }
+            ]
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "humDisp2",
+            "X": 107,
+            "Y": 37,
+            "Width": 86,
+            "Height": 36,
+            "CustomContainerDefinitionName": "humDisp"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "humDisp1",
+            "X": 7,
+            "Y": 37,
+            "Width": 86,
+            "Height": 36,
+            "CustomContainerDefinitionName": "humDisp"
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "flexButton1"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "toggleHumBtn"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "tempDisp",
+        "X": 77,
+        "Y": 142,
+        "Width": 86,
+        "Height": 36,
+        "Components": [
+          {
+            "Type": "TextArea",
+            "Name": "unit",
+            "X": 68,
+            "Y": 3,
+            "Width": 15,
+            "Height": 17,
+            "TextId": "__SingleUse_4FSJ",
+            "TextRotation": "0",
+            "AutoSize": true
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "digits1",
+            "X": 15,
+            "Y": 2,
+            "Width": 69,
+            "Height": 33,
+            "CustomContainerDefinitionName": "digits"
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "humDisp",
+        "X": 77,
+        "Y": 142,
+        "Width": 86,
+        "Height": 36,
+        "Components": [
+          {
+            "Type": "TextArea",
+            "Name": "unit",
+            "X": 68,
+            "Y": 3,
+            "Width": 8,
+            "Height": 17,
+            "TextId": "__SingleUse_A5L9",
+            "TextRotation": "0",
+            "AutoSize": true
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "digits1",
+            "X": 15,
+            "Y": 2,
+            "Width": 69,
+            "Height": 33,
+            "CustomContainerDefinitionName": "digits"
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "digits",
+        "Width": 69,
+        "Height": 33,
+        "Components": [
+          {
+            "Type": "Box",
+            "Name": "decimalsBox",
+            "X": 49,
+            "Y": 16,
+            "Width": 7,
+            "Height": 12,
+            "Color": {
+              "Red": 153,
+              "Green": 153,
+              "Blue": 153
+            }
+          },
+          {
+            "Type": "Box",
+            "Name": "onesBox",
+            "X": 30,
+            "Y": 4,
+            "Width": 15,
+            "Height": 25,
+            "Color": {
+              "Red": 153,
+              "Green": 153,
+              "Blue": 153
+            }
+          },
+          {
+            "Type": "Box",
+            "Name": "tensBox",
+            "X": 15,
+            "Y": 4,
+            "Width": 15,
+            "Height": 25,
+            "Color": {
+              "Red": 153,
+              "Green": 153,
+              "Blue": 153
+            }
+          },
+          {
+            "Type": "Box",
+            "Name": "hundredsBox",
+            "Y": 4,
+            "Width": 15,
+            "Height": 25,
+            "Color": {
+              "Red": 153,
+              "Green": 153,
+              "Blue": 153
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "decimals",
+            "X": 49,
+            "Y": 15,
+            "Width": 7,
+            "Height": 15,
+            "TextId": "__SingleUse_YVJJ",
+            "TextRotation": "0",
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_ATWK",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "dot",
+            "X": 44,
+            "Y": 15,
+            "Width": 7,
+            "Height": 15,
+            "TextId": "__SingleUse_4DSA",
+            "TextRotation": "0",
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "ones",
+            "X": 30,
+            "Width": 15,
+            "Height": 33,
+            "TextId": "__SingleUse_R12E",
+            "TextRotation": "0",
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_UIUJ",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "tens",
+            "X": 15,
+            "Width": 15,
+            "Height": 33,
+            "TextId": "__SingleUse_KLYP",
+            "TextRotation": "0",
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_6T83",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "hundreds",
+            "Width": 15,
+            "Height": 33,
+            "TextId": "__SingleUse_VEFE",
+            "TextRotation": "0",
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_KFJL",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          }
+        ],
+        "Interactions": []
+      }
+    ],
+    "Name": "MyApplication_1",
+    "Resolution": {
+      "Width": 240,
+      "Height": 320
+    },
+    "SelectedColorDepth": 16,
+    "StartupScreenName": "mainScreen",
+    "SelectedStartupLanguage": "GB",
+    "Skin": "Blue",
+    "TouchGfxPath": "../Middlewares/ST/touchgfx",
+    "UIPath": ".",
+    "AvailableColorDepths": [
+      16
+    ],
+    "AvailableLCDs": {
+      "16": "LCD16bpp"
+    },
+    "AvailableSections": [
+      "ExtFlashSection",
+      "IntFlashSection"
+    ],
+    "AvailableResolutions": [
+      {
+        "Width": 240,
+        "Height": 320
+      }
+    ],
+    "PhysicalButtons": [],
+    "FrameworkFeatures": {
+      "LCD16bpp": {
+        "Id": "LCD16bpp",
+        "IsEnabled": true
+      }
+    },
+    "GenerateAssetsCommand": "make -f simulator/gcc/Makefile assets -j8",
+    "PostGenerateCommand": "touchgfx update_project --project-file=simulator/msvs/Application.vcxproj",
+    "PostGenerateTargetCommand": "touchgfx update_project --project-file=../STM32F429I-DISCO.ioc --platform=m4",
+    "CompileSimulatorCommand": "make -f simulator/gcc/Makefile -j8",
+    "RunSimulatorCommand": "build\\bin\\simulator.exe",
+    "CompileTargetCommandOverride": "make -f ../gcc/Makefile -j8",
+    "FlashTargetCommandOverride": "make -f ../gcc/Makefile flash",
+    "LandscapeSkinX": 0,
+    "LandscapeSkinY": 0,
+    "PortraitSkinX": 0,
+    "PortraitSkinY": 0,
+    "DisplayOrientation": "Portrait"
+  },
+  "Version": "4.18.1",
+  "CreatedBy": "4.18.1"
+}
