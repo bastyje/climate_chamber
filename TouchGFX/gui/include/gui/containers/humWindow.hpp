@@ -3,6 +3,8 @@
 
 #include <gui_generated/containers/humWindowBase.hpp>
 
+class tempWindow;
+
 class humWindow : public humWindowBase
 {
 public:
@@ -14,9 +16,11 @@ public:
     virtual void changeCursorPosition(int);
     virtual void toggleHumBtn();
     bool isChecked() { return checked; }
+    virtual void setTempWindow(tempWindow *tW);
 protected:
 private:
     bool checked;
+    tempWindow *tempWindow1;
 };
 
 #endif // HUMWINDOW_HPP

@@ -12,15 +12,17 @@ const uint16_t BITMAP_BTN_RIGHT_ID = 2;
 const uint16_t BITMAP_BTN_RIGHT_CLICKED_ID = 3;
 const uint16_t BITMAP_BTN_UP_DOWN_ID = 4;
 const uint16_t BITMAP_BTN_UP_DOWN_CLICKED_ID = 5;
-const uint16_t BITMAP_DISP_BACK_ID = 6;
-const uint16_t BITMAP_DISP_LEFT_ID = 7;
-const uint16_t BITMAP_DISP_RIGHT_ID = 8;
-const uint16_t BITMAP_LABEL_BACGROUND_ID = 9;
-const uint16_t BITMAP_LABEL_BACGROUND_CLICKED_ID = 10;
-const uint16_t BITMAP_LEFT_ID = 11;
-const uint16_t BITMAP_MINUS_ID = 12;
-const uint16_t BITMAP_PLUS_ID = 13;
-const uint16_t BITMAP_RIGHT_ID = 14;
+const uint16_t BITMAP_CURSOR_ID = 6;
+const uint16_t BITMAP_CURSOR_DECIMALS_ID = 7;
+const uint16_t BITMAP_DISP_BACK_ID = 8;
+const uint16_t BITMAP_DISP_LEFT_ID = 9;
+const uint16_t BITMAP_DISP_RIGHT_ID = 10;
+const uint16_t BITMAP_LABEL_BACGROUND_ID = 11;
+const uint16_t BITMAP_LABEL_BACGROUND_CLICKED_ID = 12;
+const uint16_t BITMAP_LEFT_ID = 13;
+const uint16_t BITMAP_MINUS_ID = 14;
+const uint16_t BITMAP_PLUS_ID = 15;
+const uint16_t BITMAP_RIGHT_ID = 16;
 
 namespace BitmapDatabase
 {

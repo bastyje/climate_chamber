@@ -65,7 +65,11 @@ build/MINGW32_NT-6.2/gui/src/containers/humWindow.o: \
  gui/include/gui/containers/humDisp.hpp \
  generated/gui_generated/include/gui_generated/containers/humDispBase.hpp \
  gui/include/gui/containers/digits.hpp \
- generated/gui_generated/include/gui_generated/containers/digitsBase.hpp
+ generated/gui_generated/include/gui_generated/containers/digitsBase.hpp \
+ gui/include/gui/containers/tempWindow.hpp \
+ generated/gui_generated/include/gui_generated/containers/tempWindowBase.hpp \
+ gui/include/gui/containers/tempDisp.hpp \
+ generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp
 
 gui/include/gui/containers/humWindow.hpp:
 
@@ -198,3 +202,11 @@ generated/gui_generated/include/gui_generated/containers/humDispBase.hpp:
 gui/include/gui/containers/digits.hpp:
 
 generated/gui_generated/include/gui_generated/containers/digitsBase.hpp:
+
+gui/include/gui/containers/tempWindow.hpp:
+
+generated/gui_generated/include/gui_generated/containers/tempWindowBase.hpp:
+
+gui/include/gui/containers/tempDisp.hpp:
+
+generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp:

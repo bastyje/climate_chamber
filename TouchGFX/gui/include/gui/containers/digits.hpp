@@ -4,12 +4,6 @@
 #include <gui_generated/containers/digitsBase.hpp>
 #include <vector>
 
-/*typedef struct {
-  	touchgfx::Box box;
-   	touchgfx::TextAreaWithOneWildcard digit;
-   	uint16_t bufferSize;
-} digit_t;*/
-
 class digits : public digitsBase
 {
 public:
@@ -26,12 +20,19 @@ public:
 protected:
 
 private:
-    touchgfx::Vector<touchgfx::Box, 4> boxes;
+    touchgfx::Vector<touchgfx::Image*, 4> boxes;
     touchgfx::Vector<touchgfx::TextAreaWithOneWildcard, 4> digitsTab;
     touchgfx::Vector<int, 4> values;
     int oldCursorPosition;
     int newCursorPosition;
     virtual void updateValue();
+    const uint8_t RED_ON = 255;
+    const uint8_t GREEN_ON = 255;
+    const uint8_t BLUE_ON = 255;
+
+    const uint8_t RED_OFF = 0;
+    const uint8_t GREEN_OFF = 255;
+    const uint8_t BLUE_OFF = 255;
 };
 
 #endif // DIGITS_HPP

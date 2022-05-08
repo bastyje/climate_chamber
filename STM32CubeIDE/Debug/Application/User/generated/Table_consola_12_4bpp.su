@@ -1,2 +1,2 @@
-Table_consola_12_4bpp.cpp:27:160:void __tcf_0()	0	static
-Table_consola_12_4bpp.cpp:25:26:touchgfx::GeneratedFont& getFont_consola_12_4bpp()	64	static
+Table_consola_12_4bpp.cpp:36:161:void __tcf_0()	0	static
+Table_consola_12_4bpp.cpp:34:26:touchgfx::GeneratedFont& getFont_consola_12_4bpp()	64	static

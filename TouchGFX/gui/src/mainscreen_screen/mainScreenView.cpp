@@ -8,6 +8,8 @@ mainScreenView::mainScreenView()
 void mainScreenView::setupScreen()
 {
     mainScreenViewBase::setupScreen();
+    this->tempWindow1.setHumWindow(&(this->humWindow1));
+    this->humWindow1.setTempWindow(&(this->tempWindow1));
 }
 
 void mainScreenView::tearDownScreen()

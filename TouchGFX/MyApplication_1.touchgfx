@@ -270,6 +270,16 @@
               "Type": "ActionCustom",
               "FunctionName": "toggleTempBtn"
             }
+          },
+          {
+            "InteractionName": "Interaction2",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "flexButton1"
+            },
+            "Action": {
+              "Type": "ActionNone"
+            }
           }
         ]
       },
@@ -436,55 +446,43 @@
         "Height": 33,
         "Components": [
           {
-            "Type": "Box",
+            "Type": "Image",
             "Name": "decimalsBox",
             "X": 49,
             "Y": 16,
             "Width": 7,
             "Height": 12,
-            "Color": {
-              "Red": 153,
-              "Green": 153,
-              "Blue": 153
-            }
+            "Visible": false,
+            "RelativeFilename": "cursor_decimals.png"
           },
           {
-            "Type": "Box",
+            "Type": "Image",
             "Name": "onesBox",
             "X": 30,
-            "Y": 4,
+            "Y": 5,
             "Width": 15,
             "Height": 25,
-            "Color": {
-              "Red": 153,
-              "Green": 153,
-              "Blue": 153
-            }
+            "Visible": false,
+            "RelativeFilename": "cursor.png"
           },
           {
-            "Type": "Box",
+            "Type": "Image",
             "Name": "tensBox",
             "X": 15,
-            "Y": 4,
+            "Y": 5,
             "Width": 15,
             "Height": 25,
-            "Color": {
-              "Red": 153,
-              "Green": 153,
-              "Blue": 153
-            }
+            "Visible": false,
+            "RelativeFilename": "cursor.png"
           },
           {
-            "Type": "Box",
+            "Type": "Image",
             "Name": "hundredsBox",
-            "Y": 4,
+            "Y": 5,
             "Width": 15,
             "Height": 25,
-            "Color": {
-              "Red": 153,
-              "Green": 153,
-              "Blue": 153
-            }
+            "Visible": false,
+            "RelativeFilename": "cursor.png"
           },
           {
             "Type": "TextArea",

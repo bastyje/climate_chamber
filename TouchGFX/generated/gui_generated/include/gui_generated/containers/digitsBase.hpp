@@ -6,7 +6,7 @@
 
 #include <gui/common/FrontendApplication.hpp>
 #include <touchgfx/containers/Container.hpp>
-#include <touchgfx/widgets/Box.hpp>
+#include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 
@@ -25,10 +25,10 @@ protected:
     /*
      * Member Declarations
      */
-    touchgfx::Box decimalsBox;
-    touchgfx::Box onesBox;
-    touchgfx::Box tensBox;
-    touchgfx::Box hundredsBox;
+    touchgfx::Image decimalsBox;
+    touchgfx::Image onesBox;
+    touchgfx::Image tensBox;
+    touchgfx::Image hundredsBox;
     touchgfx::TextAreaWithOneWildcard decimals;
     touchgfx::TextArea dot;
     touchgfx::TextAreaWithOneWildcard ones;

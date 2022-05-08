@@ -3,13 +3,19 @@
 
 digits::digits()
 {
+}
+
+void digits::initialize()
+{
+    digitsBase::initialize();
+
 	this->oldCursorPosition = 0;
 	this->newCursorPosition = 0;
 
-    this->boxes.add(this->decimalsBox);
-    this->boxes.add(this->onesBox);
-    this->boxes.add(this->tensBox);
-    this->boxes.add(this->hundredsBox);
+    this->boxes.add(&this->decimalsBox);
+    this->boxes.add(&this->onesBox);
+    this->boxes.add(&this->tensBox);
+    this->boxes.add(&this->hundredsBox);
 
     this->digitsTab.add(this->decimals);
     this->digitsTab.add(this->ones);
@@ -21,50 +27,37 @@ digits::digits()
     this->values.add(3);
     this->values.add(4);
     this->updateValue();
-}
 
-void digits::initialize()
-{
-    digitsBase::initialize();
+    this->onesBox.setVisible(false);
+    this->tensBox.setVisible(false);
+    this->hundredsBox.setVisible(false);
+    this->decimalsBox.setVisible(false);
+
+	this->onesBox.invalidate();
+	this->tensBox.invalidate();
+	this->hundredsBox.invalidate();
+	this->decimalsBox.invalidate();
 }
 
 void digits::changeCursorPosition(int direction)
 {
+	this->resetCursor();
+
 	this->newCursorPosition += direction;
 
 	if (this->newCursorPosition == -1) this->newCursorPosition = 0;
 	else if (this->newCursorPosition == 4) this->newCursorPosition = 3;
+
+	this->showCursor();
 }
 
 void digits::changeValue(int value)
 {
 	switch (value) {
 	case 1:
-		/*for (int i = 0; i < 4; i++)
-		{
-			this->values[newCursorPosition + i]++;
-			if (this->values[newCursorPosition + i] == 10)
-			{
-				this->values[newCursorPosition + i] = 0;
-				if (!(0 <= newCursorPosition + i && newCursorPosition + i < 3))
-				{
-					break;
-				}
-			}
-			else break;
-		}*/
 		if (this->values[newCursorPosition] < 9) this->values[newCursorPosition]++;
 		break;
 	case -1:
-		/*for (int i = 0; i < 4; i++)
-		{
-			this->values[newCursorPosition + i]--;
-			if (this->values[newCursorPosition + i] == -1)
-			{
-				this->values[newCursorPosition + i] = 9;
-			}
-			else break;
-		}*/
 		if (this->values[newCursorPosition] > 0) this->values[newCursorPosition]--;
 		break;
 	}
@@ -98,7 +91,6 @@ void digits::updateValue()
 	touchgfx::Unicode::snprintf(tensBuffer, TENS_SIZE, "%d", this->values[2]);
 	touchgfx::Unicode::snprintf(hundredsBuffer, HUNDREDS_SIZE, "%d", this->values[3]);
 
-
 	this->hundreds.invalidate();
 	this->tens.invalidate();
 	this->ones.invalidate();
@@ -107,11 +99,12 @@ void digits::updateValue()
 
 void digits::showCursor()
 {
-	boxes[newCursorPosition].setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+	this->boxes[newCursorPosition]->setVisible(true);
+	this->boxes[newCursorPosition]->invalidate();
 }
 
 void digits::resetCursor()
 {
-	this->newCursorPosition = 0;
-	boxes[newCursorPosition].setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+	this->boxes[newCursorPosition]->setVisible(false);
+	this->boxes[newCursorPosition]->invalidate();
 }

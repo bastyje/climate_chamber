@@ -534,6 +534,16 @@
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_btn_up-down_clicked.cpp</locationURI>
 		</link>
 		<link>
+			<name>Application/User/generated/image_cursor.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_cursor.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_cursor_decimals.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_cursor_decimals.cpp</locationURI>
+		</link>
+		<link>
 			<name>Application/User/generated/image_disp_back.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_disp_back.cpp</locationURI>

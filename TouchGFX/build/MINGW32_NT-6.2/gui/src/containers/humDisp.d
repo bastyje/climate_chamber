@@ -43,7 +43,7 @@ build/MINGW32_NT-6.2/gui/src/containers/humDisp.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Widget.hpp \
  gui/include/gui/containers/digits.hpp \
  generated/gui_generated/include/gui_generated/containers/digitsBase.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp
 
 gui/include/gui/containers/humDisp.hpp:
@@ -134,6 +134,6 @@ gui/include/gui/containers/digits.hpp:
 
 generated/gui_generated/include/gui_generated/containers/digitsBase.hpp:
 
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp:
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp:
 
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:

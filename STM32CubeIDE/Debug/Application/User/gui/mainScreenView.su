@@ -1,0 +1,19 @@
+Screen.hpp:104:18:virtual void touchgfx::Screen::afterTransition()	0	static
+Screen.hpp:144:18:virtual void touchgfx::Screen::handleTickEvent()	0	static
+Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	0	static
+mainScreenView.cpp:15:6:virtual void mainScreenView::tearDownScreen()	0	static
+mainScreenView.cpp:8:6:virtual void mainScreenView::setupScreen()	16	static
+mainScreenView.cpp:20:6:virtual void mainScreenView::upBtnClicked()	0	static
+mainScreenView.cpp:32:6:virtual void mainScreenView::downBtnClicked()	0	static
+mainScreenView.cpp:44:6:virtual void mainScreenView::rightBtnClicked()	0	static
+mainScreenView.cpp:56:6:virtual void mainScreenView::leftBtnClicked()	0	static
+Types.hpp:342:7:touchgfx::Vector<touchgfx::TextAreaWithOneWildcard, 4>::~Vector()	16	static
+humWindowBase.hpp:17:13:humWindowBase::~humWindowBase()	16	static
+humWindowBase.hpp:17:13:virtual humWindowBase::~humWindowBase()	8	static
+tempWindowBase.hpp:17:13:tempWindowBase::~tempWindowBase()	16	static
+tempWindowBase.hpp:17:13:virtual tempWindowBase::~tempWindowBase()	8	static
+mainScreenViewBase.hpp:19:13:mainScreenViewBase::~mainScreenViewBase()	8	static
+mainScreenView.hpp:11:13:mainScreenView::~mainScreenView()	8	static
+mainScreenView.hpp:11:13:virtual mainScreenView::~mainScreenView()	8	static
+mainScreenViewBase.hpp:19:13:virtual mainScreenViewBase::~mainScreenViewBase()	8	static
+mainScreenView.cpp:3:1:mainScreenView::mainScreenView()	8	static

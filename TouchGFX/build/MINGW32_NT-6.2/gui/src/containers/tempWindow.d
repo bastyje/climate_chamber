@@ -47,7 +47,6 @@ build/MINGW32_NT-6.2/gui/src/containers/tempWindow.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp \
  gui/include/gui/containers/digits.hpp \
  generated/gui_generated/include/gui_generated/containers/digitsBase.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/Buttons.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/AnimatedImageButtonStyle.hpp \
@@ -55,6 +54,7 @@ build/MINGW32_NT-6.2/gui/src/containers/tempWindow.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/AnimatedImage.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/BoxWithBorderButtonStyle.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/BoxWithBorder.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/ClickButtonTrigger.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/ImageButtonStyle.hpp \
@@ -65,7 +65,11 @@ build/MINGW32_NT-6.2/gui/src/containers/tempWindow.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/ToggleButtonTrigger.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TouchButtonTrigger.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TwoWildcardTextButtonStyle.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/WildcardTextButtonStyle.hpp
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/WildcardTextButtonStyle.hpp \
+ gui/include/gui/containers/humWindow.hpp \
+ generated/gui_generated/include/gui_generated/containers/humWindowBase.hpp \
+ gui/include/gui/containers/humDisp.hpp \
+ generated/gui_generated/include/gui_generated/containers/humDispBase.hpp
 
 gui/include/gui/containers/tempWindow.hpp:
 
@@ -161,8 +165,6 @@ gui/include/gui/containers/digits.hpp:
 
 generated/gui_generated/include/gui_generated/containers/digitsBase.hpp:
 
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp:
-
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:
 
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/Buttons.hpp:
@@ -176,6 +178,8 @@ generated/gui_generated/include/gui_generated/containers/digitsBase.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/BoxWithBorderButtonStyle.hpp:
 
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/BoxWithBorder.hpp:
+
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp:
 
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/ClickButtonTrigger.hpp:
 
@@ -198,3 +202,11 @@ generated/gui_generated/include/gui_generated/containers/digitsBase.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TwoWildcardTextButtonStyle.hpp:
 
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/WildcardTextButtonStyle.hpp:
+
+gui/include/gui/containers/humWindow.hpp:
+
+generated/gui_generated/include/gui_generated/containers/humWindowBase.hpp:
+
+gui/include/gui/containers/humDisp.hpp:
+
+generated/gui_generated/include/gui_generated/containers/humDispBase.hpp:

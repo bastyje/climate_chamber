@@ -1,4 +1,5 @@
 #include <gui/containers/tempWindow.hpp>
+#include <gui/containers/humWindow.hpp>
 
 tempWindow::tempWindow()
 {
@@ -11,12 +12,20 @@ void tempWindow::initialize()
     this->checked = false;
 }
 
+void tempWindow::setHumWindow(humWindow *hW)
+{
+	this->humWindow1 = hW;
+}
+
 void tempWindow::toggleTempBtn()
 {
 	this->checked = !this->checked;
 
 	if (this->checked)
 	{
+		if (this->humWindow1->isChecked())
+			this->humWindow1->toggleHumBtn();
+
 		this->tempDisp1.showCursor();
 	}
 	else

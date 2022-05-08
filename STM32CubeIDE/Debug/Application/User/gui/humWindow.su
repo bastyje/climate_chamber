@@ -1,0 +1,22 @@
+Drawable.hpp:298:18:virtual void touchgfx::Drawable::setX(int16_t)	0	static
+Drawable.hpp:310:18:virtual void touchgfx::Drawable::setY(int16_t)	0	static
+Drawable.hpp:339:18:virtual void touchgfx::Drawable::setWidth(int16_t)	0	static
+Drawable.hpp:351:18:virtual void touchgfx::Drawable::setHeight(int16_t)	0	static
+Drawable.hpp:361:18:virtual void touchgfx::Drawable::childGeometryChanged()	0	static
+Drawable.hpp:372:18:virtual void touchgfx::Drawable::handleClickEvent(const touchgfx::ClickEvent&)	0	static
+Drawable.hpp:383:18:virtual void touchgfx::Drawable::handleGestureEvent(const touchgfx::GestureEvent&)	0	static
+Drawable.hpp:471:18:virtual void touchgfx::Drawable::handleDragEvent(const touchgfx::DragEvent&)	0	static
+Drawable.hpp:481:18:virtual void touchgfx::Drawable::handleTickEvent()	0	static
+Drawable.hpp:568:18:virtual void touchgfx::Drawable::moveTo(int16_t, int16_t)	4	static
+Container.hpp:165:23:virtual touchgfx::Drawable* touchgfx::Container::getFirstChild()	0	static
+humWindow.cpp:15:6:virtual void humWindow::setTempWindow(tempWindow*)	0	static
+humWindow.cpp:9:6:virtual void humWindow::initialize()	8	static
+humWindow.cpp:37:6:virtual void humWindow::changeValue(int)	0	static
+humWindow.cpp:42:6:virtual void humWindow::changeCursorPosition(int)	0	static
+humWindow.cpp:20:6:virtual void humWindow::toggleHumBtn()	8	static
+Types.hpp:342:7:touchgfx::Vector<touchgfx::TextAreaWithOneWildcard, 4>::~Vector()	16	static
+humWindowBase.hpp:17:13:humWindowBase::~humWindowBase()	16	static
+humWindow.hpp:12:13:humWindow::~humWindow()	8	static
+humWindow.hpp:12:13:virtual humWindow::~humWindow()	8	static
+humWindowBase.hpp:17:13:virtual humWindowBase::~humWindowBase()	8	static
+humWindow.cpp:4:1:humWindow::humWindow()	8	static
