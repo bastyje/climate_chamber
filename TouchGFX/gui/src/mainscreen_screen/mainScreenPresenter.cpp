@@ -16,3 +16,13 @@ void mainScreenPresenter::deactivate()
 {
 
 }
+
+void mainScreenPresenter::updateData(float *data)
+{
+	this->view.updateData(data);
+}
+
+void mainScreenPresenter::sendRequest(float *data)
+{
+	this->model->sendRequest(data);
+}

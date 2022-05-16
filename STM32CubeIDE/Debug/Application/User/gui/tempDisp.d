@@ -1,5 +1,5 @@
 Application/User/gui/tempDisp.o: \
- C:/TouchGFXProjects/MyApplication_1/TouchGFX/gui/src/containers/tempDisp.cpp \
+ C:/TouchGFXProjects/ch/climate_chamber/TouchGFX/gui/src/containers/tempDisp.cpp \
  ../../TouchGFX/gui/include/gui/containers/tempDisp.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp \
  ../../TouchGFX/gui/include/gui/common/FrontendApplication.hpp \

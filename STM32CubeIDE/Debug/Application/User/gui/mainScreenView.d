@@ -1,5 +1,5 @@
 Application/User/gui/mainScreenView.o: \
- C:/TouchGFXProjects/MyApplication_1/TouchGFX/gui/src/mainscreen_screen/mainScreenView.cpp \
+ C:/TouchGFXProjects/ch/climate_chamber/TouchGFX/gui/src/mainscreen_screen/mainScreenView.cpp \
  ../../TouchGFX/gui/include/gui/mainscreen_screen/mainScreenView.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/mainscreen_screen/mainScreenViewBase.hpp \
  ../../TouchGFX/gui/include/gui/common/FrontendApplication.hpp \

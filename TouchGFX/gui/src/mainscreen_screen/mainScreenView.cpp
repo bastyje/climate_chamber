@@ -66,3 +66,13 @@ void mainScreenView::leftBtnClicked()
 
 	}
 }
+
+void mainScreenView::updateData(float *data)
+{
+
+}
+
+void mainScreenView::sendRequest(float *data)
+{
+	this->presenter->sendRequest(data);
+}

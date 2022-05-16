@@ -14,6 +14,7 @@ public:
     {
         model = m;
     }
+    void updateData(float *) {}
 protected:
     Model* model;
 };

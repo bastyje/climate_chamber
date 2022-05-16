@@ -1,5 +1,5 @@
 Application/User/gui/humWindow.o: \
- C:/TouchGFXProjects/MyApplication_1/TouchGFX/gui/src/containers/humWindow.cpp \
+ C:/TouchGFXProjects/ch/climate_chamber/TouchGFX/gui/src/containers/humWindow.cpp \
  ../../TouchGFX/gui/include/gui/containers/humWindow.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/humWindowBase.hpp \
  ../../TouchGFX/gui/include/gui/common/FrontendApplication.hpp \

@@ -14,6 +14,7 @@ public:
     }
 
     void tick();
+    virtual void sendRequest(float *);
 protected:
     ModelListener* modelListener;
 };

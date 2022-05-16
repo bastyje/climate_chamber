@@ -1,5 +1,5 @@
 Application/User/gui/digits.o: \
- C:/TouchGFXProjects/MyApplication_1/TouchGFX/gui/src/containers/digits.cpp \
+ C:/TouchGFXProjects/ch/climate_chamber/TouchGFX/gui/src/containers/digits.cpp \
  ../../TouchGFX/gui/include/gui/containers/digits.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/digitsBase.hpp \
  ../../TouchGFX/gui/include/gui/common/FrontendApplication.hpp \

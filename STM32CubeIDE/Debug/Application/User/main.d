@@ -1,5 +1,5 @@
 Application/User/main.o: \
- C:/TouchGFXProjects/MyApplication_1/Core/Src/main.c \
+ C:/TouchGFXProjects/ch/climate_chamber/Core/Src/main.c \
  ../../Core/Inc/main.h \
  ../../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../../Core/Inc/stm32f4xx_hal_conf.h \
@@ -37,6 +37,7 @@ Application/User/main.o: \
  ../../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h \
  ../../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
+ ../../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  ../../Core/Inc/FreeRTOSConfig.h \
@@ -50,7 +51,9 @@ Application/User/main.o: \
  ../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
  ../../TouchGFX/App/app_touchgfx.h \
  ../../Drivers/BSP/Components/ili9341/ili9341.h \
- ../../Drivers/BSP/Components/ili9341/../Common/lcd.h
+ ../../Drivers/BSP/Components/ili9341/../Common/lcd.h \
+ ../../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
+ ../../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
 
 ../../Core/Inc/main.h:
 
@@ -126,6 +129,8 @@ Application/User/main.o: \
 
 ../../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 
+../../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
+
 ../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h:
 
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
@@ -153,3 +158,7 @@ Application/User/main.o: \
 ../../Drivers/BSP/Components/ili9341/ili9341.h:
 
 ../../Drivers/BSP/Components/ili9341/../Common/lcd.h:
+
+../../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
+
+../../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:

@@ -1,5 +1,5 @@
 Application/User/gui/humDisp.o: \
- C:/TouchGFXProjects/MyApplication_1/TouchGFX/gui/src/containers/humDisp.cpp \
+ C:/TouchGFXProjects/ch/climate_chamber/TouchGFX/gui/src/containers/humDisp.cpp \
  ../../TouchGFX/gui/include/gui/containers/humDisp.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/humDispBase.hpp \
  ../../TouchGFX/gui/include/gui/common/FrontendApplication.hpp \

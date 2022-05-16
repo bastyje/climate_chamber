@@ -65,7 +65,11 @@ TouchGFX/build/STM32F429IDISCO/TouchGFX/gui/src/containers/humWindow.o: \
  TouchGFX/gui/include/gui/containers/humDisp.hpp \
  TouchGFX/generated/gui_generated/include/gui_generated/containers/humDispBase.hpp \
  TouchGFX/gui/include/gui/containers/digits.hpp \
- TouchGFX/generated/gui_generated/include/gui_generated/containers/digitsBase.hpp
+ TouchGFX/generated/gui_generated/include/gui_generated/containers/digitsBase.hpp \
+ TouchGFX/gui/include/gui/containers/tempWindow.hpp \
+ TouchGFX/generated/gui_generated/include/gui_generated/containers/tempWindowBase.hpp \
+ TouchGFX/gui/include/gui/containers/tempDisp.hpp \
+ TouchGFX/generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp
 
 TouchGFX/gui/include/gui/containers/humWindow.hpp:
 
@@ -198,3 +202,11 @@ TouchGFX/generated/gui_generated/include/gui_generated/containers/humDispBase.hp
 TouchGFX/gui/include/gui/containers/digits.hpp:
 
 TouchGFX/generated/gui_generated/include/gui_generated/containers/digitsBase.hpp:
+
+TouchGFX/gui/include/gui/containers/tempWindow.hpp:
+
+TouchGFX/generated/gui_generated/include/gui_generated/containers/tempWindowBase.hpp:
+
+TouchGFX/gui/include/gui/containers/tempDisp.hpp:
+
+TouchGFX/generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp:

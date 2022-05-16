@@ -1,5 +1,5 @@
 Application/User/gui/FrontendApplication.o: \
- C:/TouchGFXProjects/MyApplication_1/TouchGFX/gui/src/common/FrontendApplication.cpp \
+ C:/TouchGFXProjects/ch/climate_chamber/TouchGFX/gui/src/common/FrontendApplication.cpp \
  ../../TouchGFX/gui/include/gui/common/FrontendApplication.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/common/FrontendApplicationBase.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp \

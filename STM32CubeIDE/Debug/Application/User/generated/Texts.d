@@ -1,5 +1,5 @@
 Application/User/generated/Texts.o: \
- C:/TouchGFXProjects/MyApplication_1/TouchGFX/generated/texts/src/Texts.cpp \
+ C:/TouchGFXProjects/ch/climate_chamber/TouchGFX/generated/texts/src/Texts.cpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/TextProvider.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Types.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Config.hpp \

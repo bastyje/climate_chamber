@@ -38,7 +38,7 @@ TouchGFX/build/STM32F429IDISCO/TouchGFX/gui/src/containers/digits.o: \
  Middlewares/ST/touchgfx/framework/include/mvp/MVPHeap.hpp \
  Middlewares/ST/touchgfx/framework/include/mvp/Presenter.hpp \
  TouchGFX/gui/include/gui/model/Model.hpp \
- Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp \
+ Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp \
  Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Widget.hpp \
  Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp \
  Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp \
@@ -122,7 +122,7 @@ Middlewares/ST/touchgfx/framework/include/mvp/Presenter.hpp:
 
 TouchGFX/gui/include/gui/model/Model.hpp:
 
-Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp:
+Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp:
 
 Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Widget.hpp:
 

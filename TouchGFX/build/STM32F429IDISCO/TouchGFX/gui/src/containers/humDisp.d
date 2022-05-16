@@ -44,7 +44,7 @@ TouchGFX/build/STM32F429IDISCO/TouchGFX/gui/src/containers/humDisp.o: \
  Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Widget.hpp \
  TouchGFX/gui/include/gui/containers/digits.hpp \
  TouchGFX/generated/gui_generated/include/gui_generated/containers/digitsBase.hpp \
- Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp \
+ Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp \
  Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp
 
 TouchGFX/gui/include/gui/containers/humDisp.hpp:
@@ -135,6 +135,6 @@ TouchGFX/gui/include/gui/containers/digits.hpp:
 
 TouchGFX/generated/gui_generated/include/gui_generated/containers/digitsBase.hpp:
 
-Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp:
+Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp:
 
 Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:

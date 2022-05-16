@@ -73,6 +73,8 @@ LTDC_HandleTypeDef hltdc;
 
 SPI_HandleTypeDef hspi5;
 
+UART_HandleTypeDef huart2;
+
 SDRAM_HandleTypeDef hsdram1;
 
 /* Definitions for GUI_Task */
@@ -81,6 +83,13 @@ const osThreadAttr_t GUI_Task_attributes = {
   .name = "GUI_Task",
   .priority = (osPriority_t) osPriorityNormal,
   .stack_size = 8192 * 4
+};
+/* Definitions for sendRequestTask */
+osThreadId_t sendRequestTaskHandle;
+const osThreadAttr_t sendRequestTask_attributes = {
+  .name = "sendRequestTask",
+  .priority = (osPriority_t) osPriorityNormal,
+  .stack_size = 128 * 4
 };
 /* USER CODE BEGIN PV */
 
@@ -95,7 +104,9 @@ static void MX_SPI5_Init(void);
 static void MX_FMC_Init(void);
 static void MX_LTDC_Init(void);
 static void MX_DMA2D_Init(void);
+static void MX_USART2_UART_Init(void);
 void TouchGFX_Task(void *argument);
+void StartsendRequestTask(void *argument);
 
 /* USER CODE BEGIN PFP */
 static void BSP_SDRAM_Initialization_Sequence(SDRAM_HandleTypeDef *hsdram, FMC_SDRAM_CommandTypeDef *Command);
@@ -149,8 +160,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-
-HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -171,6 +181,7 @@ HAL_Init();
   MX_FMC_Init();
   MX_LTDC_Init();
   MX_DMA2D_Init();
+  MX_USART2_UART_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
 
@@ -198,6 +209,9 @@ HAL_Init();
   /* Create the thread(s) */
   /* creation of GUI_Task */
   GUI_TaskHandle = osThreadNew(TouchGFX_Task, NULL, &GUI_Task_attributes);
+
+  /* creation of sendRequestTask */
+  sendRequestTaskHandle = osThreadNew(StartsendRequestTask, NULL, &sendRequestTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -482,6 +496,39 @@ static void MX_SPI5_Init(void)
   
 
   /* USER CODE END SPI5_Init 2 */
+
+}
+
+/**
+  * @brief USART2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART2_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART2_Init 0 */
+
+  /* USER CODE END USART2_Init 0 */
+
+  /* USER CODE BEGIN USART2_Init 1 */
+
+  /* USER CODE END USART2_Init 1 */
+  huart2.Instance = USART2;
+  huart2.Init.BaudRate = 9600;
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.StopBits = UART_STOPBITS_1;
+  huart2.Init.Parity = UART_PARITY_NONE;
+  huart2.Init.Mode = UART_MODE_TX_RX;
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART2_Init 2 */
+
+  /* USER CODE END USART2_Init 2 */
 
 }
 
@@ -901,6 +948,118 @@ void LCD_Delay(uint32_t Delay)
   HAL_Delay(Delay);
 }
 
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "task.h"
+#include "queue.h"
+
+char *checkSum(char *str)
+{
+    int l = strlen(str);
+    unsigned char b = 0, j, k;
+    char ch;
+
+    for (int i = 0; i < l; i++)
+    {
+        ch = str[i];
+        j = ch;
+        b = b - j;
+    }
+
+    j = b / 16;
+    if (j < 10) j += 48;
+    else j += 55;
+
+    k = b % 16;
+    if (k < 10) k += 48;
+    else k+= 55;
+    char *string = malloc(3);
+    sprintf(string, "%c%c", (char) j, (char) k);
+    return string;
+}
+
+const unsigned char CHAR_TO_NUMBER = 48;
+const unsigned char STX = 2;
+const unsigned char ETX = 3;
+
+char *tempToChar(float val)
+{
+	char *temp = malloc(4);
+	temp[0] = (char) val / 100;
+	temp[1] = (char) (val - temp[0] * 100) / 10;
+	temp[2] = (char) (val - temp[0] * 100 - temp[1] * 10);
+	temp[3] = (char) (val - temp[0] * 100 - temp[1] * 10 - temp[2]) * 10;
+	return temp;
+}
+
+char *humToChar(float val)
+{
+	char *hum = malloc(2);
+	if (val == -1) return "--";
+	hum[0] = (char) val / 100;
+	hum[1] = (char) (val - hum[0] * 100) / 10;
+	return hum;
+}
+
+char *prepareRequestString(int isRequestForData, float *data)
+{
+	char *rs = NULL;
+	if (isRequestForData == 0)
+	{
+		rs = malloc(6);
+		rs[0] = STX;
+		rs[1] = 0; // co to jest
+		rs[2] = 63;
+
+		char *str = malloc(3);
+		sprintf(str, "%c%c", rs[1], rs[2]);
+		char *cs = checkSum(str);
+
+		rs[3] = cs[0];
+		rs[4] = cs[1];
+		rs[5] = ETX;
+
+	}
+	else if (isRequestForData == 1)
+	{
+		char *temp = tempToChar(data[0]);
+		char *hum = humToChar(data[1]);
+
+		rs = malloc(6);
+
+		rs[0] = STX;
+		rs[1] = 0; // co to jest
+		rs[2] = 'T';
+		rs[3] = temp[0];
+		rs[4] = temp[1];
+		rs[5] = temp[2];
+		rs[6] = '.';
+		rs[7] = temp[3];
+		rs[8] = 'F';
+		rs[9] = hum[0];
+		rs[10] = hum[1];
+		rs[11] = 'R';
+
+		for (int i = 12; i < 28; i++)
+			rs[i] = '0';
+
+		char *str = malloc(27);
+		strncpy(str, rs+1, 27);
+
+		char *cs = checkSum(str);
+
+		rs[28] = cs[0];
+		rs[29] = cs[1];
+		rs[30] = ETX;
+
+		free(temp);
+		free(hum);
+	}
+
+	return rs;
+}
+
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_TouchGFX_Task */
@@ -919,6 +1078,34 @@ __weak void TouchGFX_Task(void *argument)
     osDelay(1);
   }
   /* USER CODE END 5 */
+}
+
+/* USER CODE BEGIN Header_StartsendRequestTask */
+/**
+* @brief Function implementing the sendRequestTask thread.
+* @param argument: Not used
+* @retval None
+*/
+
+extern xQueueHandle messageQ;
+extern xQueueHandle messageQ2;
+
+/* USER CODE END Header_StartsendRequestTask */
+void StartsendRequestTask(void *argument)
+{
+  /* USER CODE BEGIN StartsendRequestTask */
+  /* Infinite loop */
+	float r[2];
+	int isChangeRequest = 0;
+	char *Tx;
+	for(;;)
+	{
+		isChangeRequest = (int) xQueueReceive(messageQ2, &r, 0);
+		Tx = prepareRequestString(isChangeRequest, r);
+		HAL_UART_Transmit(&huart2, (uint8_t *) Tx, strlen(Tx), 1000);
+		osDelay(1000);
+	}
+  /* USER CODE END StartsendRequestTask */
 }
 
  /**

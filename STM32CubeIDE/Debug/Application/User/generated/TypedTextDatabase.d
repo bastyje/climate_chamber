@@ -1,5 +1,5 @@
 Application/User/generated/TypedTextDatabase.o: \
- C:/TouchGFXProjects/MyApplication_1/TouchGFX/generated/texts/src/TypedTextDatabase.cpp \
+ C:/TouchGFXProjects/ch/climate_chamber/TouchGFX/generated/texts/src/TypedTextDatabase.cpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Types.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Config.hpp \

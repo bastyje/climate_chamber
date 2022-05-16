@@ -1,5 +1,5 @@
 Application/User/generated/digitsBase.o: \
- C:/TouchGFXProjects/MyApplication_1/TouchGFX/generated/gui_generated/src/containers/digitsBase.cpp \
+ C:/TouchGFXProjects/ch/climate_chamber/TouchGFX/generated/gui_generated/src/containers/digitsBase.cpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/digitsBase.hpp \
  ../../TouchGFX/gui/include/gui/common/FrontendApplication.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/common/FrontendApplicationBase.hpp \

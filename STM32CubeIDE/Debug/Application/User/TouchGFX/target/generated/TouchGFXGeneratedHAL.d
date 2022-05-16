@@ -1,5 +1,5 @@
 Application/User/TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
- C:/TouchGFXProjects/MyApplication_1/TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp \
+ C:/TouchGFXProjects/ch/climate_chamber/TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp \
  ../../TouchGFX/target/generated/TouchGFXGeneratedHAL.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/HAL.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Types.hpp \
@@ -25,7 +25,6 @@ Application/User/TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
  ../../Middlewares/ST/touchgfx/framework/include/platform/core/MCUInstrumentation.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/platform/driver/button/ButtonController.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/platform/driver/touch/TouchController.hpp \
- ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/GPIO.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/OSWrappers.hpp \
  ../../TouchGFX/gui/include/gui/common/FrontendHeap.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/common/FrontendHeapBase.hpp \
@@ -83,6 +82,7 @@ Application/User/TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempWindowBase.hpp \
  ../../TouchGFX/gui/include/gui/containers/tempDisp.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp \
+ ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/GPIO.hpp \
  ../../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h \
  ../../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f429xx.h \
  ../../Drivers/CMSIS/Include/core_cm4.h \
@@ -118,7 +118,8 @@ Application/User/TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
  ../../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  ../../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h \
  ../../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
- ../../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
+ ../../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
+ ../../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 
 ../../TouchGFX/target/generated/TouchGFXGeneratedHAL.hpp:
 
@@ -169,8 +170,6 @@ Application/User/TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
 ../../Middlewares/ST/touchgfx/framework/include/platform/driver/button/ButtonController.hpp:
 
 ../../Middlewares/ST/touchgfx/framework/include/platform/driver/touch/TouchController.hpp:
-
-../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/GPIO.hpp:
 
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/OSWrappers.hpp:
 
@@ -286,6 +285,8 @@ Application/User/TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
 
 ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp:
 
+../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/GPIO.hpp:
+
 ../../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h:
 
 ../../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f429xx.h:
@@ -357,3 +358,5 @@ Application/User/TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
 ../../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 
 ../../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
+
+../../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
