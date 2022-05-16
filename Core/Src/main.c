@@ -25,6 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "queue.h"
 #include "Components/ili9341/ili9341.h"
 /* USER CODE END Includes */
 
@@ -73,6 +74,8 @@ LTDC_HandleTypeDef hltdc;
 
 SPI_HandleTypeDef hspi5;
 
+UART_HandleTypeDef huart2;
+
 SDRAM_HandleTypeDef hsdram1;
 
 /* Definitions for GUI_Task */
@@ -82,8 +85,20 @@ const osThreadAttr_t GUI_Task_attributes = {
   .priority = (osPriority_t) osPriorityNormal,
   .stack_size = 8192 * 4
 };
+/* Definitions for dataRequest */
+osThreadId_t dataRequestHandle;
+const osThreadAttr_t dataRequest_attributes = {
+  .name = "dataRequest",
+  .priority = (osPriority_t) osPriorityNormal,
+  .stack_size = 128 * 4
+};
+/* Definitions for chamberDataQueue */
+osMessageQueueId_t chamberDataQueueHandle;
+const osMessageQueueAttr_t chamberDataQueue_attributes = {
+  .name = "chamberDataQueue"
+};
 /* USER CODE BEGIN PV */
-
+uint8_t Rx[50];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -95,7 +110,9 @@ static void MX_SPI5_Init(void);
 static void MX_FMC_Init(void);
 static void MX_LTDC_Init(void);
 static void MX_DMA2D_Init(void);
+static void MX_USART2_UART_Init(void);
 void TouchGFX_Task(void *argument);
+void dataRequestTask(void *argument);
 
 /* USER CODE BEGIN PFP */
 static void BSP_SDRAM_Initialization_Sequence(SDRAM_HandleTypeDef *hsdram, FMC_SDRAM_CommandTypeDef *Command);
@@ -126,6 +143,12 @@ void                      IOE_Write(uint8_t Addr, uint8_t Reg, uint8_t Value);
 uint8_t                   IOE_Read(uint8_t Addr, uint8_t Reg);
 uint16_t                  IOE_ReadMultiple(uint8_t Addr, uint8_t Reg, uint8_t *pBuffer, uint16_t Length);
 
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	HAL_UART_Receive_IT(&huart2, Rx, 50);
+}
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -149,8 +172,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-
-HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -171,8 +193,11 @@ HAL_Init();
   MX_FMC_Init();
   MX_LTDC_Init();
   MX_DMA2D_Init();
+  MX_USART2_UART_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
+
+  HAL_UART_Receive_IT(&huart2, Rx, 50);
 
   /* USER CODE END 2 */
 
@@ -191,6 +216,10 @@ HAL_Init();
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
+  /* Create the queue(s) */
+  /* creation of chamberDataQueue */
+  chamberDataQueueHandle = osMessageQueueNew (3, sizeof(uint8_t), &chamberDataQueue_attributes);
+
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
@@ -198,6 +227,9 @@ HAL_Init();
   /* Create the thread(s) */
   /* creation of GUI_Task */
   GUI_TaskHandle = osThreadNew(TouchGFX_Task, NULL, &GUI_Task_attributes);
+
+  /* creation of dataRequest */
+  dataRequestHandle = osThreadNew(dataRequestTask, NULL, &dataRequest_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -238,11 +270,17 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 8;
-  RCC_OscInitStruct.PLL.PLLN = 336;
+  RCC_OscInitStruct.PLL.PLLM = 4;
+  RCC_OscInitStruct.PLL.PLLN = 180;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
+  RCC_OscInitStruct.PLL.PLLQ = 3;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Activate the Over-Drive mode
+  */
+  if (HAL_PWREx_EnableOverDrive() != HAL_OK)
   {
     Error_Handler();
   }
@@ -260,9 +298,9 @@ void SystemClock_Config(void)
     Error_Handler();
   }
   PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_LTDC;
-  PeriphClkInitStruct.PLLSAI.PLLSAIN = 192;
-  PeriphClkInitStruct.PLLSAI.PLLSAIR = 4;
-  PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_8;
+  PeriphClkInitStruct.PLLSAI.PLLSAIN = 50;
+  PeriphClkInitStruct.PLLSAI.PLLSAIR = 2;
+  PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_2;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -482,6 +520,39 @@ static void MX_SPI5_Init(void)
   
 
   /* USER CODE END SPI5_Init 2 */
+
+}
+
+/**
+  * @brief USART2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART2_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART2_Init 0 */
+
+  /* USER CODE END USART2_Init 0 */
+
+  /* USER CODE BEGIN USART2_Init 1 */
+
+  /* USER CODE END USART2_Init 1 */
+  huart2.Instance = USART2;
+  huart2.Init.BaudRate = 115200;
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.StopBits = UART_STOPBITS_1;
+  huart2.Init.Parity = UART_PARITY_NONE;
+  huart2.Init.Mode = UART_MODE_TX_RX;
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART2_Init 2 */
+
+  /* USER CODE END USART2_Init 2 */
 
 }
 
@@ -901,13 +972,123 @@ void LCD_Delay(uint32_t Delay)
   HAL_Delay(Delay);
 }
 
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+char *checkSum(char *str)
+{
+    int l = strlen(str);
+    unsigned char b = 0, j, k;
+    char ch;
+
+    for (int i = 0; i < l; i++)
+    {
+        ch = str[i];
+        j = ch;
+        b = b - j;
+    }
+
+    j = b / 16;
+    if (j < 10) j += 48;
+    else j += 55;
+
+    k = b % 16;
+    if (k < 10) k += 48;
+    else k+= 55;
+    char *string = malloc(3);
+    sprintf(string, "%c%c", (char) j, (char) k);
+    return string;
+}
+
+const unsigned char CHAR_TO_NUMBER = 48;
+const unsigned char STX = 2;
+const unsigned char ETX = 3;
+
+char *tempToChar(float val)
+{
+	char *temp = malloc(4);
+	temp[0] = (char) val / 100;
+	temp[1] = (char) (val - temp[0] * 100) / 10;
+	temp[2] = (char) (val - temp[0] * 100 - temp[1] * 10);
+	temp[3] = (char) (val - temp[0] * 100 - temp[1] * 10 - temp[2]) * 10;
+	return temp;
+}
+
+char *humToChar(float val)
+{
+	char *hum = malloc(2);
+	if (val == -1) return "--";
+	hum[0] = (char) val / 100;
+	hum[1] = (char) (val - hum[0] * 100) / 10;
+	return hum;
+}
+
+char *prepareRequestString(int isRequestForData, float *data)
+{
+	char *rs = NULL;
+	if (isRequestForData == 0)
+	{
+		rs = malloc(6);
+		rs[0] = STX;
+		rs[1] = 0; // co to jest
+		rs[2] = 63;
+
+		char *str = malloc(3);
+		sprintf(str, "%c%c", rs[1], rs[2]);
+		char *cs = checkSum(str);
+
+		rs[3] = cs[0];
+		rs[4] = cs[1];
+		rs[5] = ETX;
+
+	}
+	else if (isRequestForData == 1)
+	{
+		char *temp = tempToChar(data[0]);
+		char *hum = humToChar(data[1]);
+
+		rs = malloc(6);
+
+		rs[0] = STX;
+		rs[1] = 0; // co to jest
+		rs[2] = 'T';
+		rs[3] = temp[0];
+		rs[4] = temp[1];
+		rs[5] = temp[2];
+		rs[6] = '.';
+		rs[7] = temp[3];
+		rs[8] = 'F';
+		rs[9] = hum[0];
+		rs[10] = hum[1];
+		rs[11] = 'R';
+
+		for (int i = 12; i < 28; i++)
+			rs[i] = '0';
+
+		char *str = malloc(27);
+		strncpy(str, rs+1, 27);
+
+		char *cs = checkSum(str);
+
+		rs[28] = cs[0];
+		rs[29] = cs[1];
+		rs[30] = ETX;
+
+		free(temp);
+		free(hum);
+	}
+
+	return rs;
+}
+
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_TouchGFX_Task */
 /**
   * @brief  Function implementing the GUI_Task thread.
   * @param  argument: Not used 
-  * @retval None
+  * @retval Nones
   */
 /* USER CODE END Header_TouchGFX_Task */
 __weak void TouchGFX_Task(void *argument)
@@ -919,6 +1100,39 @@ __weak void TouchGFX_Task(void *argument)
     osDelay(1);
   }
   /* USER CODE END 5 */
+}
+
+/* USER CODE BEGIN Header_dataRequestTask */
+/**
+* @brief Function implementing the dataRequest thread.
+* @param argument: Not used
+* @retval None
+*/
+
+extern xQueueHandle messageQ;
+extern xQueueHandle messageQ2;
+
+/* USER CODE END Header_dataRequestTask */
+void dataRequestTask(void *argument)
+{
+  /* USER CODE BEGIN dataRequestTask */
+	float r[2];
+	int isChangeRequest = 0;
+	uint8_t dupa[4];
+	dupa[0] = 'd';
+	dupa[1] = 'u';
+	dupa[2] = 'p';
+	dupa[3] = 'a';
+	char *Tx;
+  /* Infinite loop */
+	for(;;)
+	{
+		isChangeRequest = (int) xQueueReceive(messageQ2, &r, 0);
+		Tx = prepareRequestString(isChangeRequest, r);
+		HAL_UART_Transmit(&huart2, (uint8_t *) dupa, 4, 1000);
+		osDelay(1000);
+	}
+  /* USER CODE END dataRequestTask */
 }
 
  /**

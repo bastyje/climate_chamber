@@ -20,7 +20,7 @@ Partition.hpp:42:7:virtual touchgfx::Partition<touchgfx::meta::TypeList<mainScre
 FrontendHeap.hpp:6:7:FrontendHeap::~FrontendHeap()	8	static
 FrontendHeap.hpp:56:29:void __tcf_0()	8	static
 FrontendHeap.hpp:6:7:virtual FrontendHeap::~FrontendHeap()	8	static
-TouchGFXConfiguration.cpp:37:6:void touchgfx_init()	32	static
-TouchGFXConfiguration.cpp:51:6:void touchgfx_taskEntry()	0	static
-TouchGFXConfiguration.cpp:60:1:cpp)	16	static
-TouchGFXConfiguration.cpp:60:1:cpp)	0	static
+TouchGFXConfiguration.cpp:39:6:void touchgfx_init()	32	static
+TouchGFXConfiguration.cpp:59:6:void touchgfx_taskEntry()	0	static
+TouchGFXConfiguration.cpp:68:1:cpp)	16	static
+TouchGFXConfiguration.cpp:68:1:cpp)	0	static

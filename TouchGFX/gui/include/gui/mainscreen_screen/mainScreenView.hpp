@@ -16,6 +16,8 @@ public:
 	virtual void downBtnClicked();
 	virtual void rightBtnClicked();
 	virtual void leftBtnClicked();
+	virtual void updateData(float *);
+    virtual void sendRequest(float *);
 protected:
 	int counter;
 };
