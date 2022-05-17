@@ -10,8 +10,7 @@ C:/TouchGFXProjects/ch/climate_chamber/Core/Src/main.c \
 C:/TouchGFXProjects/ch/climate_chamber/Core/Src/stm32f4xx_hal_msp.c \
 C:/TouchGFXProjects/ch/climate_chamber/Core/Src/stm32f4xx_hal_timebase_tim.c \
 C:/TouchGFXProjects/ch/climate_chamber/Core/Src/stm32f4xx_it.c \
-../Application/User/syscalls.c \
-../Application/User/sysmem.c 
+../Application/User/syscalls.c 
 
 C_DEPS += \
 ./Application/User/freertos.d \
@@ -19,8 +18,7 @@ C_DEPS += \
 ./Application/User/stm32f4xx_hal_msp.d \
 ./Application/User/stm32f4xx_hal_timebase_tim.d \
 ./Application/User/stm32f4xx_it.d \
-./Application/User/syscalls.d \
-./Application/User/sysmem.d 
+./Application/User/syscalls.d 
 
 OBJS += \
 ./Application/User/freertos.o \
@@ -28,8 +26,7 @@ OBJS += \
 ./Application/User/stm32f4xx_hal_msp.o \
 ./Application/User/stm32f4xx_hal_timebase_tim.o \
 ./Application/User/stm32f4xx_it.o \
-./Application/User/syscalls.o \
-./Application/User/sysmem.o 
+./Application/User/syscalls.o 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -49,7 +46,7 @@ Application/User/%.o: ../Application/User/%.c Application/User/subdir.mk
 clean: clean-Application-2f-User
 
 clean-Application-2f-User:
-	-$(RM) ./Application/User/freertos.d ./Application/User/freertos.o ./Application/User/main.d ./Application/User/main.o ./Application/User/stm32f4xx_hal_msp.d ./Application/User/stm32f4xx_hal_msp.o ./Application/User/stm32f4xx_hal_timebase_tim.d ./Application/User/stm32f4xx_hal_timebase_tim.o ./Application/User/stm32f4xx_it.d ./Application/User/stm32f4xx_it.o ./Application/User/syscalls.d ./Application/User/syscalls.o ./Application/User/sysmem.d ./Application/User/sysmem.o
+	-$(RM) ./Application/User/freertos.d ./Application/User/freertos.o ./Application/User/main.d ./Application/User/main.o ./Application/User/stm32f4xx_hal_msp.d ./Application/User/stm32f4xx_hal_msp.o ./Application/User/stm32f4xx_hal_timebase_tim.d ./Application/User/stm32f4xx_hal_timebase_tim.o ./Application/User/stm32f4xx_it.d ./Application/User/stm32f4xx_it.o ./Application/User/syscalls.d ./Application/User/syscalls.o
 
 .PHONY: clean-Application-2f-User
 
