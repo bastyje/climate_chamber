@@ -74,6 +74,10 @@ Application/User/generated/mainScreenViewBase.o: \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempWindowBase.hpp \
  ../../TouchGFX/gui/include/gui/containers/tempDisp.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp \
+ ../../TouchGFX/gui/include/gui/containers/errorBox.hpp \
+ ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/errorBoxBase.hpp \
+ ../../TouchGFX/gui/include/gui/containers/statusBox.hpp \
+ ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/statusBoxBase.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/Color.hpp \
  ../../TouchGFX/generated/images/include/BitmapDatabase.hpp
 
@@ -224,6 +228,14 @@ Application/User/generated/mainScreenViewBase.o: \
 ../../TouchGFX/gui/include/gui/containers/tempDisp.hpp:
 
 ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp:
+
+../../TouchGFX/gui/include/gui/containers/errorBox.hpp:
+
+../../TouchGFX/generated/gui_generated/include/gui_generated/containers/errorBoxBase.hpp:
+
+../../TouchGFX/gui/include/gui/containers/statusBox.hpp:
+
+../../TouchGFX/generated/gui_generated/include/gui_generated/containers/statusBoxBase.hpp:
 
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/Color.hpp:
 

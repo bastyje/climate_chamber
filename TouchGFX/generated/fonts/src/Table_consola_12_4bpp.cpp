@@ -4,6 +4,7 @@
 
 FONT_TABLE_LOCATION_FLASH_PRAGMA
 KEEP extern const touchgfx::GlyphNode glyphs_consola_12_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE = {
+    {     0, 0x0020,   0,   0,   0,   0,   7,   0,   0, 0x00 },
     {     0, 0x002E,   3,   2,   2,   2,   7,   0,   0, 0x00 },
     {     4, 0x0030,   7,   8,   8,   0,   7,   0,   0, 0x00 },
     {    36, 0x0031,   6,   8,   8,   0,   7,   0,   0, 0x00 },
@@ -15,7 +16,19 @@ KEEP extern const touchgfx::GlyphNode glyphs_consola_12_4bpp[] FONT_TABLE_LOCATI
     {   188, 0x0037,   6,   8,   8,   0,   7,   0,   0, 0x00 },
     {   212, 0x0038,   6,   8,   8,   0,   7,   0,   0, 0x00 },
     {   236, 0x0039,   6,   8,   8,   0,   7,   0,   0, 0x00 },
-    {   260, 0x003F,   5,   8,   8,   1,   7,   0,   0, 0x00 }
+    {   260, 0x003F,   5,   8,   8,   1,   7,   0,   0, 0x00 },
+    {   284, 0x0050,   6,   8,   8,   0,   7,   0,   0, 0x00 },
+    {   308, 0x0061,   6,   6,   6,   0,   7,   0,   0, 0x00 },
+    {   326, 0x0063,   5,   6,   6,   1,   7,   0,   0, 0x00 },
+    {   344, 0x0064,   6,   8,   8,   0,   7,   0,   0, 0x00 },
+    {   368, 0x0065,   6,   6,   6,   0,   7,   0,   0, 0x00 },
+    {   386, 0x0068,   6,   8,   8,   0,   7,   0,   0, 0x00 },
+    {   410, 0x0069,   5,   8,   8,   1,   7,   0,   0, 0x00 },
+    {   434, 0x006C,   5,   8,   8,   1,   7,   0,   0, 0x00 },
+    {   458, 0x0072,   5,   6,   6,   1,   7,   0,   0, 0x00 },
+    {   476, 0x0073,   5,   6,   6,   1,   7,   0,   0, 0x00 },
+    {   494, 0x0074,   6,   8,   8,   0,   7,   0,   0, 0x00 },
+    {   518, 0x0076,   7,   6,   6,   0,   7,   0,   0, 0x00 }
 };
 
 // consola_12_4bpp
@@ -33,6 +46,6 @@ touchgfx::GeneratedFont& getFont_consola_12_4bpp();
 
 touchgfx::GeneratedFont& getFont_consola_12_4bpp()
 {
-    static touchgfx::GeneratedFont consola_12_4bpp(glyphs_consola_12_4bpp, 12, 12, 0, 4, 1, 0, 0, unicodes_consola_12_4bpp, kerning_consola_12_4bpp, 63, 0, 0, 0);
+    static touchgfx::GeneratedFont consola_12_4bpp(glyphs_consola_12_4bpp, 25, 12, 0, 4, 1, 0, 0, unicodes_consola_12_4bpp, kerning_consola_12_4bpp, 63, 0, 0, 0);
     return consola_12_4bpp;
 }

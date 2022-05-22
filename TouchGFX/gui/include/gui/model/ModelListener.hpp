@@ -14,7 +14,10 @@ public:
     {
         model = m;
     }
-    void updateData(float *) {}
+    virtual void updateData(float *data) {}
+    virtual void setData(float *data) {}
+    virtual void reportError(int errorCode) {}
+    virtual void setStatus(int errorCode) {}
 protected:
     Model* model;
 };

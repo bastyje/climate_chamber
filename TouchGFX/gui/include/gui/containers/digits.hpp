@@ -17,6 +17,7 @@ public:
     virtual void changeCursorPosition(int);
     virtual void showCursor();
     virtual void resetCursor();
+    virtual float getValue();
 protected:
 
 private:

@@ -82,6 +82,10 @@ Application/User/TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempWindowBase.hpp \
  ../../TouchGFX/gui/include/gui/containers/tempDisp.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp \
+ ../../TouchGFX/gui/include/gui/containers/errorBox.hpp \
+ ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/errorBoxBase.hpp \
+ ../../TouchGFX/gui/include/gui/containers/statusBox.hpp \
+ ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/statusBoxBase.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/GPIO.hpp \
  ../../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h \
  ../../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f429xx.h \
@@ -284,6 +288,14 @@ Application/User/TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
 ../../TouchGFX/gui/include/gui/containers/tempDisp.hpp:
 
 ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp:
+
+../../TouchGFX/gui/include/gui/containers/errorBox.hpp:
+
+../../TouchGFX/generated/gui_generated/include/gui_generated/containers/errorBoxBase.hpp:
+
+../../TouchGFX/gui/include/gui/containers/statusBox.hpp:
+
+../../TouchGFX/generated/gui_generated/include/gui_generated/containers/statusBoxBase.hpp:
 
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/GPIO.hpp:
 

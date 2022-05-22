@@ -69,7 +69,16 @@ Application/User/gui/humWindow.o: \
  ../../TouchGFX/gui/include/gui/containers/tempWindow.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempWindowBase.hpp \
  ../../TouchGFX/gui/include/gui/containers/tempDisp.hpp \
- ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp
+ ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp \
+ ../../TouchGFX/gui/include/gui/mainscreen_screen/mainScreenView.hpp \
+ ../../TouchGFX/generated/gui_generated/include/gui_generated/mainscreen_screen/mainScreenViewBase.hpp \
+ ../../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp \
+ ../../TouchGFX/gui/include/gui/mainscreen_screen/mainScreenPresenter.hpp \
+ ../../TouchGFX/gui/include/gui/model/ModelListener.hpp \
+ ../../TouchGFX/gui/include/gui/containers/errorBox.hpp \
+ ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/errorBoxBase.hpp \
+ ../../TouchGFX/gui/include/gui/containers/statusBox.hpp \
+ ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/statusBoxBase.hpp
 
 ../../TouchGFX/gui/include/gui/containers/humWindow.hpp:
 
@@ -210,3 +219,21 @@ Application/User/gui/humWindow.o: \
 ../../TouchGFX/gui/include/gui/containers/tempDisp.hpp:
 
 ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp:
+
+../../TouchGFX/gui/include/gui/mainscreen_screen/mainScreenView.hpp:
+
+../../TouchGFX/generated/gui_generated/include/gui_generated/mainscreen_screen/mainScreenViewBase.hpp:
+
+../../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:
+
+../../TouchGFX/gui/include/gui/mainscreen_screen/mainScreenPresenter.hpp:
+
+../../TouchGFX/gui/include/gui/model/ModelListener.hpp:
+
+../../TouchGFX/gui/include/gui/containers/errorBox.hpp:
+
+../../TouchGFX/generated/gui_generated/include/gui_generated/containers/errorBoxBase.hpp:
+
+../../TouchGFX/gui/include/gui/containers/statusBox.hpp:
+
+../../TouchGFX/generated/gui_generated/include/gui_generated/containers/statusBoxBase.hpp:

@@ -14,6 +14,8 @@ tempDisp.cpp:13:6:virtual void tempDisp::changeValue(int)	0	static
 tempDisp.cpp:18:6:virtual void tempDisp::changeCursorPosition(int)	0	static
 tempDisp.cpp:23:6:virtual void tempDisp::showCursor()	0	static
 tempDisp.cpp:28:6:virtual void tempDisp::resetCursor()	0	static
+tempDisp.cpp:33:6:virtual void tempDisp::uploadValue(float)	0	static
+tempDisp.cpp:38:7:virtual float tempDisp::getTemperature()	0	static
 tempDisp.hpp:10:13:tempDisp::~tempDisp()	16	static
 tempDisp.hpp:10:13:virtual tempDisp::~tempDisp()	8	static
 tempDisp.cpp:3:1:tempDisp::tempDisp()	8	static

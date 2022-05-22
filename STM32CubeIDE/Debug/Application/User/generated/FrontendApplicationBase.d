@@ -80,6 +80,10 @@ Application/User/generated/FrontendApplicationBase.o: \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempWindowBase.hpp \
  ../../TouchGFX/gui/include/gui/containers/tempDisp.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp \
+ ../../TouchGFX/gui/include/gui/containers/errorBox.hpp \
+ ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/errorBoxBase.hpp \
+ ../../TouchGFX/gui/include/gui/containers/statusBox.hpp \
+ ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/statusBoxBase.hpp \
  ../../TouchGFX/generated/texts/include/texts/TextKeysAndLanguages.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/platform/driver/lcd/LCD16bpp.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/Color.hpp \
@@ -244,6 +248,14 @@ Application/User/generated/FrontendApplicationBase.o: \
 ../../TouchGFX/gui/include/gui/containers/tempDisp.hpp:
 
 ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp:
+
+../../TouchGFX/gui/include/gui/containers/errorBox.hpp:
+
+../../TouchGFX/generated/gui_generated/include/gui_generated/containers/errorBoxBase.hpp:
+
+../../TouchGFX/gui/include/gui/containers/statusBox.hpp:
+
+../../TouchGFX/generated/gui_generated/include/gui_generated/containers/statusBoxBase.hpp:
 
 ../../TouchGFX/generated/texts/include/texts/TextKeysAndLanguages.hpp:
 

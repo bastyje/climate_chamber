@@ -9,14 +9,18 @@ Drawable.hpp:471:18:virtual void touchgfx::Drawable::handleDragEvent(const touch
 Drawable.hpp:481:18:virtual void touchgfx::Drawable::handleTickEvent()	0	static
 Drawable.hpp:568:18:virtual void touchgfx::Drawable::moveTo(int16_t, int16_t)	4	static
 Container.hpp:165:23:virtual touchgfx::Drawable* touchgfx::Container::getFirstChild()	0	static
-tempWindow.cpp:15:6:virtual void tempWindow::setHumWindow(humWindow*)	0	static
-tempWindow.cpp:9:6:virtual void tempWindow::initialize()	8	static
-tempWindow.cpp:37:6:virtual void tempWindow::changeValue(int)	0	static
-tempWindow.cpp:42:6:virtual void tempWindow::changeCursorPosition(int)	0	static
-tempWindow.cpp:20:6:virtual void tempWindow::toggleTempBtn()	8	static
+tempWindow.cpp:16:6:virtual void tempWindow::setHumWindow(humWindow*)	0	static
+tempWindow.cpp:21:6:virtual void tempWindow::setScreen(mainScreenView*)	0	static
+tempWindow.cpp:10:6:virtual void tempWindow::initialize()	8	static
+tempWindow.cpp:46:6:virtual void tempWindow::changeValue(int)	0	static
+tempWindow.cpp:51:6:virtual void tempWindow::changeCursorPosition(int)	0	static
+tempWindow.cpp:56:6:virtual void tempWindow::uploadValue(float)	0	static
+tempWindow.cpp:61:6:virtual void tempWindow::setData(float)	16	static
+tempWindow.cpp:67:7:virtual float tempWindow::getTemperature()	0	static
+tempWindow.cpp:28:6:virtual void tempWindow::toggleTempBtn()	16	static
 Types.hpp:342:7:touchgfx::Vector<touchgfx::TextAreaWithOneWildcard, 4>::~Vector()	16	static
 tempWindowBase.hpp:17:13:tempWindowBase::~tempWindowBase()	16	static
-tempWindow.hpp:12:13:tempWindow::~tempWindow()	8	static
-tempWindow.hpp:12:13:virtual tempWindow::~tempWindow()	8	static
+tempWindow.hpp:13:13:tempWindow::~tempWindow()	8	static
+tempWindow.hpp:13:13:virtual tempWindow::~tempWindow()	8	static
 tempWindowBase.hpp:17:13:virtual tempWindowBase::~tempWindowBase()	8	static
-tempWindow.cpp:4:1:tempWindow::tempWindow()	8	static
+tempWindow.cpp:5:1:tempWindow::tempWindow()	8	static

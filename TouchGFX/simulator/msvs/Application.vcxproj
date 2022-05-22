@@ -34,6 +34,10 @@
     <ClCompile Include="..\..\generated\gui_generated\src\mainscreen_screen\mainScreenViewBase.cpp"/>
     <ClCompile Include="..\..\gui\src\containers\digits.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\digitsBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\errorBox.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\errorBoxBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\statusBox.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\statusBoxBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
@@ -197,6 +201,10 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\mainscreen_screen\mainScreenViewBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\digits.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\digitsBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\errorBox.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\errorBoxBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\statusBox.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\statusBoxBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>

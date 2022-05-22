@@ -27,8 +27,11 @@ public:
 
     virtual ~mainScreenPresenter() {};
 
+    virtual void setData(float *);
     virtual void updateData(float *);
     virtual void sendRequest(float *);
+    virtual void reportError(int);
+    virtual void setStatus(int);
 private:
     mainScreenPresenter();
 

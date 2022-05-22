@@ -16,10 +16,11 @@ TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	0	static
 digits.hpp:11:13:digits::~digits()	16	static
 digits.cpp:42:6:virtual void digits::changeCursorPosition(int)	16	static
 digits.cpp:54:6:virtual void digits::changeValue(int)	0	static
-digits.cpp:67:6:virtual void digits::initializeValue(float)	24	static
+digits.cpp:67:6:virtual void digits::initializeValue(float)	16	static
 digits.cpp:77:6:virtual void digits::uploadValue(int, int, int, int)	4	static
 digits.cpp:100:6:virtual void digits::showCursor()	0	static
 digits.cpp:106:6:virtual void digits::resetCursor()	0	static
+digits.cpp:115:7:virtual float digits::getValue()	0	static
 TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	8	static
 digits.hpp:11:13:virtual digits::~digits()	8	static
 digits.cpp:87:6:virtual void digits::updateValue()	8	static

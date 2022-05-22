@@ -30,3 +30,14 @@ void tempDisp::resetCursor()
 	this->digits1.resetCursor();
 }
 
+void tempDisp::uploadValue(float value)
+{
+	this->digits1.initializeValue(value);
+}
+
+float tempDisp::getTemperature()
+{
+	return this->digits1.getValue();
+}
+
+

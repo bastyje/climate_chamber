@@ -47,6 +47,11 @@ mainScreenViewBase::mainScreenViewBase() :
 
     tempWindow1.setXY(20, 20);
 
+    errorBox1.setXY(0, 0);
+    errorBox1.setVisible(false);
+
+    statusBox1.setXY(60, 0);
+
     add(__background);
     add(background);
     add(left);
@@ -55,12 +60,16 @@ mainScreenViewBase::mainScreenViewBase() :
     add(down);
     add(humWindow1);
     add(tempWindow1);
+    add(errorBox1);
+    add(statusBox1);
 }
 
 void mainScreenViewBase::setupScreen()
 {
     humWindow1.initialize();
     tempWindow1.initialize();
+    errorBox1.initialize();
+    statusBox1.initialize();
 }
 
 void mainScreenViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src)

@@ -112,6 +112,18 @@
     <Text Id="__SingleUse_6T83" TypographyId="value" Alignment="Left" Direction="LTR">
       <Translation Language="GB">0</Translation>
     </Text>
+    <Text Id="__SingleUse_JDS9" TypographyId="title" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">ERROR</Translation>
+    </Text>
+    <Text Id="__SingleUse_0SYC" TypographyId="float" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">Please restart the device</Translation>
+    </Text>
+    <Text Id="__SingleUse_C3YE" TypographyId="annotations" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">NO CONNECTION</Translation>
+    </Text>
+    <Text Id="__SingleUse_BFSZ" TypographyId="annotations" Alignment="Left" Direction="LTR">
+      <Translation Language="GB">OK CONNECTION</Translation>
+    </Text>
   </Texts>
   <Typographies>
     <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" FallbackCharacter="?" />

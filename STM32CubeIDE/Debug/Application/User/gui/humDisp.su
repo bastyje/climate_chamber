@@ -14,6 +14,8 @@ humDisp.cpp:13:6:virtual void humDisp::changeValue(int)	0	static
 humDisp.cpp:18:6:virtual void humDisp::changeCursorPosition(int)	0	static
 humDisp.cpp:23:6:virtual void humDisp::showCursor()	0	static
 humDisp.cpp:28:6:virtual void humDisp::resetCursor()	0	static
+humDisp.cpp:33:6:virtual void humDisp::uploadValue(float)	0	static
+humDisp.cpp:38:7:virtual float humDisp::getHumidity()	0	static
 humDisp.hpp:10:13:humDisp::~humDisp()	16	static
 humDisp.hpp:10:13:virtual humDisp::~humDisp()	8	static
 humDisp.cpp:3:1:humDisp::humDisp()	8	static

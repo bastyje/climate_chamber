@@ -11,6 +11,8 @@
 #include <touchgfx/containers/buttons/Buttons.hpp>
 #include <gui/containers/humWindow.hpp>
 #include <gui/containers/tempWindow.hpp>
+#include <gui/containers/errorBox.hpp>
+#include <gui/containers/statusBox.hpp>
 
 class mainScreenViewBase : public touchgfx::View<mainScreenPresenter>
 {
@@ -58,6 +60,8 @@ protected:
     touchgfx::IconButtonStyle< touchgfx::ImageButtonStyle< touchgfx::ClickButtonTrigger > > down;
     humWindow humWindow1;
     tempWindow tempWindow1;
+    errorBox errorBox1;
+    statusBox statusBox1;
 
 private:
 

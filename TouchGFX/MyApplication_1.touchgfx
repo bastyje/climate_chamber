@@ -125,6 +125,22 @@
             "Width": 200,
             "Height": 80,
             "CustomContainerDefinitionName": "tempWindow"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "errorBox1",
+            "Width": 240,
+            "Height": 320,
+            "Visible": false,
+            "CustomContainerDefinitionName": "errorBox"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "statusBox1",
+            "X": 60,
+            "Width": 120,
+            "Height": 19,
+            "CustomContainerDefinitionName": "statusBox"
           }
         ],
         "Interactions": [
@@ -557,6 +573,93 @@
           }
         ],
         "Interactions": []
+      },
+      {
+        "Name": "errorBox",
+        "Width": 240,
+        "Height": 320,
+        "Components": [
+          {
+            "Type": "Box",
+            "Name": "box1",
+            "Width": 240,
+            "Height": 320,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "title",
+            "X": 87,
+            "Y": 104,
+            "Width": 66,
+            "Height": 29,
+            "TextId": "__SingleUse_JDS9",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "description",
+            "X": 38,
+            "Y": 133,
+            "Width": 165,
+            "Height": 15,
+            "TextId": "__SingleUse_0SYC",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255
+            },
+            "AutoSize": true
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "statusBox",
+        "X": 60,
+        "Width": 120,
+        "Height": 19,
+        "Components": [
+          {
+            "Type": "TextArea",
+            "Name": "noConnection",
+            "X": 10,
+            "Y": 1,
+            "Width": 100,
+            "Height": 17,
+            "Visible": false,
+            "TextId": "__SingleUse_C3YE",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "okConnection",
+            "X": 10,
+            "Y": 1,
+            "Width": 100,
+            "Height": 17,
+            "Visible": false,
+            "TextId": "__SingleUse_BFSZ",
+            "TextRotation": "0",
+            "Color": {
+              "Green": 207,
+              "Blue": 55
+            },
+            "AutoSize": true
+          }
+        ],
+        "Interactions": []
       }
     ],
     "Name": "MyApplication_1",
@@ -604,7 +707,8 @@
     "LandscapeSkinY": 0,
     "PortraitSkinX": 0,
     "PortraitSkinY": 0,
-    "DisplayOrientation": "Portrait"
+    "DisplayOrientation": "Portrait",
+    "Family": "STM32F4"
   },
   "Version": "4.18.1",
   "CreatedBy": "4.18.1"

@@ -22,10 +22,10 @@ void digits::initialize()
     this->digitsTab.add(this->tens);
     this->digitsTab.add(this->hundreds);
 
-    this->values.add(1);
-    this->values.add(2);
-    this->values.add(3);
-    this->values.add(4);
+    this->values.add(0);
+    this->values.add(0);
+    this->values.add(0);
+    this->values.add(0);
     this->updateValue();
 
     this->onesBox.setVisible(false);
@@ -69,7 +69,7 @@ void digits::initializeValue(float value)
 	int hundreds = (int) value / 100;
 	int tens = (int) (value - hundreds * 100) / 10;
 	int ones = (int) (value - hundreds * 100 - tens * 10);
-	int decimals = (int) (value - hundreds * 100 - tens * 10 - ones) * 10;
+	int decimals = (int) ((value - hundreds * 100 - tens * 10 - ones) * 10);
 
 	uploadValue(hundreds, tens, ones, decimals);
 }
@@ -108,3 +108,10 @@ void digits::resetCursor()
 	this->boxes[newCursorPosition]->setVisible(false);
 	this->boxes[newCursorPosition]->invalidate();
 }
+
+float digits::getValue()
+{
+	float ret = (((float) this->values[3]) * 100 + ((float) this->values[2]) * 10 + ((float) this->values[1])  + ((float) this->values[0]) / 10);
+	return ret;
+}
+

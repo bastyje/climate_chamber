@@ -74,7 +74,11 @@ Application/User/gui/mainScreenPresenter.o: \
  ../../TouchGFX/gui/include/gui/containers/tempWindow.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempWindowBase.hpp \
  ../../TouchGFX/gui/include/gui/containers/tempDisp.hpp \
- ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp
+ ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp \
+ ../../TouchGFX/gui/include/gui/containers/errorBox.hpp \
+ ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/errorBoxBase.hpp \
+ ../../TouchGFX/gui/include/gui/containers/statusBox.hpp \
+ ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/statusBoxBase.hpp
 
 ../../TouchGFX/gui/include/gui/mainscreen_screen/mainScreenView.hpp:
 
@@ -225,3 +229,11 @@ Application/User/gui/mainScreenPresenter.o: \
 ../../TouchGFX/gui/include/gui/containers/tempDisp.hpp:
 
 ../../TouchGFX/generated/gui_generated/include/gui_generated/containers/tempDispBase.hpp:
+
+../../TouchGFX/gui/include/gui/containers/errorBox.hpp:
+
+../../TouchGFX/generated/gui_generated/include/gui_generated/containers/errorBoxBase.hpp:
+
+../../TouchGFX/gui/include/gui/containers/statusBox.hpp:
+
+../../TouchGFX/generated/gui_generated/include/gui_generated/containers/statusBoxBase.hpp:

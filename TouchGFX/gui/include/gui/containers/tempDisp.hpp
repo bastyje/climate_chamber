@@ -14,6 +14,8 @@ public:
     virtual void changeCursorPosition(int);
     virtual void showCursor();
     virtual void resetCursor();
+    virtual void uploadValue(float value);
+    virtual float getTemperature();
 protected:
 };
 

@@ -4,6 +4,7 @@
 #include <gui_generated/containers/humWindowBase.hpp>
 
 class tempWindow;
+class mainScreenView;
 
 class humWindow : public humWindowBase
 {
@@ -17,10 +18,15 @@ public:
     virtual void toggleHumBtn();
     bool isChecked() { return checked; }
     virtual void setTempWindow(tempWindow *tW);
+    virtual void setScreen(mainScreenView *msv);
+    virtual void uploadValue(float value);
+    virtual void setData(float value);
+    virtual float getHumidity();
 protected:
 private:
     bool checked;
     tempWindow *tempWindow1;
+    mainScreenView *msv;
 };
 
 #endif // HUMWINDOW_HPP

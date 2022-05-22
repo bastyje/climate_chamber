@@ -26,6 +26,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "Components/ili9341/ili9341.h"
+#include "task.h"
+#include "queue.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -88,13 +90,22 @@ const osThreadAttr_t GUI_Task_attributes = {
 osThreadId_t sendRequestTaskHandle;
 const osThreadAttr_t sendRequestTask_attributes = {
   .name = "sendRequestTask",
-  .priority = (osPriority_t) osPriorityNormal,
+  .priority = (osPriority_t) osPriorityAboveNormal,
   .stack_size = 128 * 4
 };
+/* Definitions for messageQ1 */
+extern osMessageQueueId_t messageQ1Handle;
+const osMessageQueueAttr_t messageQ1_attributes = {
+  .name = "messageQ1"
+};
+/* Definitions for messageQ2 */
+extern osMessageQueueId_t messageQ2Handle;
+const osMessageQueueAttr_t messageQ2_attributes = {
+  .name = "messageQ2"
+};
 /* USER CODE BEGIN PV */
-
-uint8_t Rx[50];
-
+xQueueHandle messageQ1;
+xQueueHandle messageQ2;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -138,14 +149,6 @@ void                      IOE_Delay(uint32_t Delay);
 void                      IOE_Write(uint8_t Addr, uint8_t Reg, uint8_t Value);
 uint8_t                   IOE_Read(uint8_t Addr, uint8_t Reg);
 uint16_t                  IOE_ReadMultiple(uint8_t Addr, uint8_t Reg, uint8_t *pBuffer, uint16_t Length);
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-	HAL_UART_Receive_IT(huart, Rx, 50);
-
-	for (int i = 0; i < 50; i++)
-		Rx[i] = '\000';
-}
 
 /* USER CODE END PFP */
 
@@ -195,8 +198,6 @@ int main(void)
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
 
-  HAL_UART_Receive_IT(&huart1, Rx, 50);
-
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -214,8 +215,17 @@ int main(void)
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
+  /* Create the queue(s) */
+  /* creation of messageQ1 */
+  //messageQ1Handle = osMessageQueueNew (5, sizeof(uint8_t), &messageQ1_attributes);
+
+  /* creation of messageQ2 */
+  //messageQ2Handle = osMessageQueueNew (5, sizeof(uint8_t), &messageQ2_attributes);
+
   /* USER CODE BEGIN RTOS_QUEUES */
-  /* add queues, ... */
+  messageQ1 = xQueueGenericCreate(3, sizeof(float), 0);
+  messageQ2 = xQueueGenericCreate(3, sizeof(float), 0);
+  sendRequestTaskHandle = osThreadNew(StartsendRequestTask, NULL, &sendRequestTask_attributes);
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
@@ -223,7 +233,7 @@ int main(void)
   GUI_TaskHandle = osThreadNew(TouchGFX_Task, NULL, &GUI_Task_attributes);
 
   /* creation of sendRequestTask */
-  sendRequestTaskHandle = osThreadNew(StartsendRequestTask, NULL, &sendRequestTask_attributes);
+  //sendRequestTaskHandle = osThreadNew(StartsendRequestTask, NULL, &sendRequestTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -963,8 +973,6 @@ void LCD_Delay(uint32_t Delay)
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "task.h"
-#include "queue.h"
 
 char *checkSum(char *str)
 {
@@ -995,31 +1003,43 @@ const unsigned char CHAR_TO_NUMBER = 48;
 const unsigned char STX = 2;
 const unsigned char ETX = 3;
 
-char *tempToChar(float val)
+char *tempToChar(float value)
 {
+	int hundreds = (int) value / 100;
+	int tens = (int) (value - hundreds * 100) / 10;
+	int ones = (int) (value - hundreds * 100 - tens * 10);
+	int decimals = (int) ((value - hundreds * 100 - tens * 10 - ones) * 10);
+
 	char *temp = malloc(4);
-	temp[0] = (char) val / 100;
-	temp[1] = (char) (val - temp[0] * 100) / 10;
-	temp[2] = (char) (val - temp[0] * 100 - temp[1] * 10);
-	temp[3] = (char) (val - temp[0] * 100 - temp[1] * 10 - temp[2]) * 10;
+
+	temp[0] = CHAR_TO_NUMBER + (char) hundreds;
+	temp[1] = CHAR_TO_NUMBER + (char) tens;
+	temp[2] = CHAR_TO_NUMBER + (char) ones;
+	temp[3] = CHAR_TO_NUMBER + (char) decimals;
+
 	return temp;
 }
 
-char *humToChar(float val)
+char *humToChar(float value)
 {
+	int hundreds = (int) value / 100;
+	int tens = (int) (value - hundreds * 100) / 10;
+	int ones = (int) (value - hundreds * 100 - tens * 10);
+
 	char *hum = malloc(2);
-	if (val == -1) return "--";
-	hum[0] = (char) val / 100;
-	hum[1] = (char) (val - hum[0] * 100) / 10;
+
+	hum[0] = CHAR_TO_NUMBER + (char) tens;
+	hum[1] = CHAR_TO_NUMBER + (char) ones;
+
 	return hum;
 }
 
-char *prepareRequestString(int isRequestForData, float *data)
+void prepareRequestString(int isRequestForData, float *data, char *rs)
 {
-	char *rs = NULL;
+	//char *rs = NULL;
 	if (isRequestForData == 0)
 	{
-		rs = malloc(6);
+		//rs = malloc(6);
 		rs[0] = STX;
 		rs[1] = 0;       // co to jest
 		rs[2] = 63;
@@ -1035,10 +1055,10 @@ char *prepareRequestString(int isRequestForData, float *data)
 	}
 	else if (isRequestForData == 1)
 	{
-		char *temp = tempToChar(data[0]);
-		char *hum = humToChar(data[1]);
+		char *temp = tempToChar(data[1]);
+		char *hum = humToChar(data[2]);
 
-		rs = malloc(6);
+		//rs = malloc(31);
 
 		rs[0] = STX;
 		rs[1] = 0; // co to jest
@@ -1059,17 +1079,34 @@ char *prepareRequestString(int isRequestForData, float *data)
 		char *str = malloc(27);
 		strncpy(str, rs+1, 27);
 
-		char *cs = checkSum(str);
+		//char *cs = checkSum(str);
 
-		rs[28] = cs[0];
-		rs[29] = cs[1];
+		rs[28] = 2 + CHAR_TO_NUMBER;//cs[0];
+		rs[29] = 2 + CHAR_TO_NUMBER;//cs[1];
 		rs[30] = ETX;
 
 		//free(temp);
 		//free(hum);
 	}
 
-	return rs;
+	//return rs;
+}
+
+float *parseResponse(char *Rx, int statusCode)
+{
+	char *tempRaw = "%c%c%c.%c", *temp = malloc(6);
+	char *humRaw = "%c%c", *hum = malloc(3);
+
+	float *res = malloc(3 * sizeof(float));
+
+	sprintf(temp, tempRaw, Rx[3], Rx[4], Rx[5], Rx[7]);
+	sprintf(hum, humRaw, Rx[9], Rx[10]);
+
+	res[0] = atof(temp);
+	res[1] = atof(hum);
+	res[2] = statusCode;
+
+	return res;
 }
 
 /* USER CODE END 4 */
@@ -1099,22 +1136,75 @@ __weak void TouchGFX_Task(void *argument)
 * @retval None
 */
 
-extern xQueueHandle messageQ;
-extern xQueueHandle messageQ2;
+// extern xQueueHandle messageQ;
+// extern xQueueHandle messageQ2;
+
+uint8_t Rx[51];
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	HAL_UART_Receive_IT(&huart1, Rx, 5);
+}
+char Tx[31];
 
 /* USER CODE END Header_StartsendRequestTask */
 void StartsendRequestTask(void *argument)
 {
   /* USER CODE BEGIN StartsendRequestTask */
   /* Infinite loop */
-	float r[2];
-	int isChangeRequest = 0;
-	char *Tx;
+	float r[3];
+	float *T;
+	int sendCount = 0;
+	int statusCode = -1;
 	for(;;)
 	{
-		isChangeRequest = (int) xQueueReceive(messageQ2, &r, 0);
-		Tx = prepareRequestString(isChangeRequest, r);
-		HAL_UART_Transmit(&huart1, (uint8_t *) Tx, 6, 1000);
+		xQueueReceive(messageQ2, &(r[0]), 0);
+		xQueueReceive(messageQ2, &(r[1]), 0);
+		xQueueReceive(messageQ2, &(r[2]), 0);
+
+		prepareRequestString((int) r[0], r, &(Tx[0]));
+
+		if (((int) r[0]) == 0)
+		{
+			HAL_UART_Transmit(&huart1, (uint8_t *) Tx, 6, 1000);
+			if (HAL_UART_Receive(&huart1, Rx, 51, 1000) == HAL_OK)
+			{
+				statusCode = 0;
+			}
+			else
+			{
+				statusCode = -1;
+			}
+		}
+		else if (((int) r[0]) == 1)
+		{
+			HAL_UART_Transmit(&huart1, (uint8_t *) Tx, 31, 1000);
+			HAL_UART_Receive(&huart1, Rx, 6, 1000);
+
+			sendCount++;
+
+			if (sendCount > 10)
+			{
+				T = malloc(1);
+				T[0] = -240;
+				xQueueSend(messageQ1, &(T[0]), 500);
+			}
+
+			if (Rx[2] == 6)
+			{
+				sendCount = 0;
+				r[0] = 0;
+				r[1] = 0;
+				r[2] = 0;
+			}
+		}
+
+		T = parseResponse((char *) Rx, statusCode);
+
+		xQueueSend(messageQ1, &(T[0]), 500);
+		xQueueSend(messageQ1, &(T[1]), 500);
+		xQueueSend(messageQ1, &(T[2]), 500);
+
 		osDelay(1000);
 	}
   /* USER CODE END StartsendRequestTask */
