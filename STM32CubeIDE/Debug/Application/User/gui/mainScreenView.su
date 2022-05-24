@@ -6,8 +6,8 @@ mainScreenView.cpp:8:6:virtual void mainScreenView::setupScreen()	16	static
 mainScreenView.cpp:72:6:virtual void mainScreenView::setData(float*)	16	static
 mainScreenView.cpp:78:6:virtual void mainScreenView::updateData(float*)	16	static
 mainScreenView.cpp:84:6:virtual void mainScreenView::sendRequest()	24	static
-mainScreenView.cpp:93:6:virtual void mainScreenView::reportError(int)	8	static
-mainScreenView.cpp:116:6:virtual void mainScreenView::setStatus(int)	0	static
+mainScreenView.cpp:92:6:virtual void mainScreenView::reportError(int)	8	static
+mainScreenView.cpp:115:6:virtual void mainScreenView::setStatus(int)	0	static
 mainScreenView.cpp:22:6:virtual void mainScreenView::upBtnClicked()	0	static
 mainScreenView.cpp:34:6:virtual void mainScreenView::downBtnClicked()	0	static
 mainScreenView.cpp:46:6:virtual void mainScreenView::rightBtnClicked()	0	static

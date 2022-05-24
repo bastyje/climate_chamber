@@ -28,6 +28,7 @@
 #include "Components/ili9341/ili9341.h"
 #include "task.h"
 #include "queue.h"
+#include "transferData.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -90,8 +91,8 @@ const osThreadAttr_t GUI_Task_attributes = {
 osThreadId_t sendRequestTaskHandle;
 const osThreadAttr_t sendRequestTask_attributes = {
   .name = "sendRequestTask",
-  .priority = (osPriority_t) osPriorityAboveNormal,
-  .stack_size = 128 * 4
+  .priority = (osPriority_t) osPriorityNormal,
+  .stack_size = 256 * 4
 };
 /* Definitions for messageQ1 */
 extern osMessageQueueId_t messageQ1Handle;
@@ -223,8 +224,8 @@ int main(void)
   //messageQ2Handle = osMessageQueueNew (5, sizeof(uint8_t), &messageQ2_attributes);
 
   /* USER CODE BEGIN RTOS_QUEUES */
-  messageQ1 = xQueueGenericCreate(3, sizeof(float), 0);
-  messageQ2 = xQueueGenericCreate(3, sizeof(float), 0);
+  messageQ1 = xQueueGenericCreate(1, sizeof(transfer), 0);
+  messageQ2 = xQueueGenericCreate(1, sizeof(transfer), 0);
   sendRequestTaskHandle = osThreadNew(StartsendRequestTask, NULL, &sendRequestTask_attributes);
   /* USER CODE END RTOS_QUEUES */
 
@@ -1034,12 +1035,10 @@ char *humToChar(float value)
 	return hum;
 }
 
-void prepareRequestString(int isRequestForData, float *data, char *rs)
+void prepareRequestString(transfer r, char *rs)
 {
-	//char *rs = NULL;
-	if (isRequestForData == 0)
+	if (r.flag == 0)
 	{
-		//rs = malloc(6);
 		rs[0] = STX;
 		rs[1] = 0;       // co to jest
 		rs[2] = 63;
@@ -1053,12 +1052,10 @@ void prepareRequestString(int isRequestForData, float *data, char *rs)
 		rs[5] = ETX;
 
 	}
-	else if (isRequestForData == 1)
+	else if (r.flag == 1)
 	{
-		char *temp = tempToChar(data[1]);
-		char *hum = humToChar(data[2]);
-
-		//rs = malloc(31);
+		char *temp = tempToChar(r.temp);
+		char *hum = humToChar(r.hum);
 
 		rs[0] = STX;
 		rs[1] = 0; // co to jest
@@ -1081,32 +1078,28 @@ void prepareRequestString(int isRequestForData, float *data, char *rs)
 
 		//char *cs = checkSum(str);
 
-		rs[28] = 2 + CHAR_TO_NUMBER;//cs[0];
-		rs[29] = 2 + CHAR_TO_NUMBER;//cs[1];
+		rs[28] = 2 + CHAR_TO_NUMBER; //cs[0];
+		rs[29] = 2 + CHAR_TO_NUMBER; //cs[1];
 		rs[30] = ETX;
 
-		//free(temp);
-		//free(hum);
+		free(temp);
+		free(hum);
 	}
-
-	//return rs;
 }
 
-float *parseResponse(char *Rx, int statusCode)
+void parseResponse(transfer *t, char *R)
 {
 	char *tempRaw = "%c%c%c.%c", *temp = malloc(6);
 	char *humRaw = "%c%c", *hum = malloc(3);
 
-	float *res = malloc(3 * sizeof(float));
+	sprintf(temp, tempRaw, R[3], R[4], R[5], R[7]);
+	sprintf(hum, humRaw, R[9], R[10]);
 
-	sprintf(temp, tempRaw, Rx[3], Rx[4], Rx[5], Rx[7]);
-	sprintf(hum, humRaw, Rx[9], Rx[10]);
+	t->temp = atof(temp);
+	t->hum = atof(hum);
 
-	res[0] = atof(temp);
-	res[1] = atof(hum);
-	res[2] = statusCode;
-
-	return res;
+	free(temp);
+	free(hum);
 }
 
 /* USER CODE END 4 */
@@ -1136,74 +1129,71 @@ __weak void TouchGFX_Task(void *argument)
 * @retval None
 */
 
-// extern xQueueHandle messageQ;
-// extern xQueueHandle messageQ2;
-
-uint8_t Rx[51];
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-	HAL_UART_Receive_IT(&huart1, Rx, 5);
-}
-char Tx[31];
+uint8_t RxDataRequest[51], RxDataChangeRequest[6], Tx[31];
+transfer t1, r1;
+int state;
 
 /* USER CODE END Header_StartsendRequestTask */
 void StartsendRequestTask(void *argument)
 {
   /* USER CODE BEGIN StartsendRequestTask */
   /* Infinite loop */
-	float r[3];
-	float *T;
 	int sendCount = 0;
-	int statusCode = -1;
+	int notOkCount = 0;
+	t1.flag = -1;
+	r1.flag = 0;
 	for(;;)
 	{
-		xQueueReceive(messageQ2, &(r[0]), 0);
-		xQueueReceive(messageQ2, &(r[1]), 0);
-		xQueueReceive(messageQ2, &(r[2]), 0);
+		//r1.flag = 0;
+		xQueueReceive(messageQ2, &r1, 0);
 
-		prepareRequestString((int) r[0], r, &(Tx[0]));
+		prepareRequestString(r1, (char *) Tx);
 
-		if (((int) r[0]) == 0)
+		if (((int) r1.flag) == 0)
 		{
-			HAL_UART_Transmit(&huart1, (uint8_t *) Tx, 6, 1000);
-			if (HAL_UART_Receive(&huart1, Rx, 51, 1000) == HAL_OK)
+			HAL_UART_Transmit(&huart1, (uint8_t *) Tx, 6, 500);
+			if ((state = HAL_UART_Receive(&huart1, RxDataRequest, 51, 500)) == HAL_OK)
 			{
-				statusCode = 0;
+				notOkCount = 0;
+				t1.flag = 0;
+				parseResponse(&t1, (char *) RxDataRequest);
 			}
 			else
 			{
-				statusCode = -1;
+				notOkCount++;
+			}
+
+			if (notOkCount > 9)
+			{
+				t1.flag = -1;
+				t1.temp = 0;
+				t1.hum = 0;
 			}
 		}
-		else if (((int) r[0]) == 1)
+		else if (((int) r1.flag) == 1)
 		{
 			HAL_UART_Transmit(&huart1, (uint8_t *) Tx, 31, 1000);
-			HAL_UART_Receive(&huart1, Rx, 6, 1000);
+			HAL_UART_Receive(&huart1, RxDataChangeRequest, 6, 2000);
 
 			sendCount++;
+			parseResponse(&t1, (char *) RxDataChangeRequest);
 
 			if (sendCount > 10)
 			{
-				T = malloc(1);
-				T[0] = -240;
-				xQueueSend(messageQ1, &(T[0]), 500);
+				t1.flag = -240;
+				xQueueSend(messageQ1, &t1, 500);
 			}
 
-			if (Rx[2] == 6)
+			if (RxDataChangeRequest[2] == 6)
 			{
 				sendCount = 0;
-				r[0] = 0;
-				r[1] = 0;
-				r[2] = 0;
+				r1.flag = 0;
+				r1.temp = 0;
+				r1.hum = 0;
 			}
 		}
 
-		T = parseResponse((char *) Rx, statusCode);
-
-		xQueueSend(messageQ1, &(T[0]), 500);
-		xQueueSend(messageQ1, &(T[1]), 500);
-		xQueueSend(messageQ1, &(T[2]), 500);
+		xQueueSend(messageQ1, &t1, 500);
 
 		osDelay(1000);
 	}

@@ -8,7 +8,8 @@ humDisp::humDisp()
 void humDisp::initialize()
 {
     humDispBase::initialize();
-    this->digits.setCursorRange();
+    this->digits1.setCursorRange(1, 3);
+    this->digits1.setValueRange(0, 100);
 }
 
 void humDisp::changeValue(int value)
@@ -28,7 +29,7 @@ void humDisp::showCursor()
 
 void humDisp::resetCursor()
 {
-	this->digits1.resetCursor();
+	this->digits1.hideCursor();
 }
 
 void humDisp::uploadValue(float value)

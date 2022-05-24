@@ -14,11 +14,11 @@ Container.hpp:165:23:virtual touchgfx::Drawable* touchgfx::Container::getFirstCh
 Widget.hpp:47:18:virtual void touchgfx::Widget::getLastChild(int16_t, int16_t, touchgfx::Drawable**)	0	static
 TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	0	static
 digitsBase.hpp:17:13:digitsBase::~digitsBase()	0	static
-digitsBase.cpp:77:6:virtual void digitsBase::initialize()	0	static
+digitsBase.cpp:84:6:virtual void digitsBase::initialize()	0	static
 TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	8	static
 digitsBase.hpp:17:13:virtual digitsBase::~digitsBase()	8	static
 Drawable.hpp:48:5:touchgfx::Drawable::Drawable()	0	static
 Drawable.hpp:326:10:void touchgfx::Drawable::setXY(int16_t, int16_t)	16	static
 Image.hpp:50:5:touchgfx::Image::Image(const touchgfx::Bitmap&)	16	static
 TextArea.hpp:42:5:touchgfx::TextArea::TextArea()	8	static
-digitsBase.cpp:9:1:digitsBase::digitsBase()	64	static
+digitsBase.cpp:9:1:digitsBase::digitsBase()	72	static

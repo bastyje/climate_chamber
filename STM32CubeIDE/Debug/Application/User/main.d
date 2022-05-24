@@ -53,7 +53,8 @@ Application/User/main.o: \
  ../../Drivers/BSP/Components/ili9341/ili9341.h \
  ../../Drivers/BSP/Components/ili9341/../Common/lcd.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
- ../../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+ ../../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
+ C:/TouchGFXProjects/ch/climate_chamber/STM32CubeIDE/Application/User/transferData.h
 
 ../../Core/Inc/main.h:
 
@@ -162,3 +163,5 @@ Application/User/main.o: \
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
 
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
+
+C:/TouchGFXProjects/ch/climate_chamber/STM32CubeIDE/Application/User/transferData.h:

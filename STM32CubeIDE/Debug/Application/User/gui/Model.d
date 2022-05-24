@@ -12,7 +12,8 @@ Application/User/gui/Model.o: \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
- ../../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+ ../../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
+ C:/TouchGFXProjects/ch/climate_chamber/STM32CubeIDE/Application/User/transferData.h
 
 ../../TouchGFX/gui/include/gui/model/Model.hpp:
 
@@ -39,3 +40,5 @@ Application/User/gui/Model.o: \
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
 
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
+
+C:/TouchGFXProjects/ch/climate_chamber/STM32CubeIDE/Application/User/transferData.h:

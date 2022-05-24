@@ -8,6 +8,8 @@ tempDisp::tempDisp()
 void tempDisp::initialize()
 {
     tempDispBase::initialize();
+    this->digits1.setCursorRange(0, 3);
+    this->digits1.setValueRange(-100, 200);
 }
 
 void tempDisp::changeValue(int value)
@@ -27,7 +29,7 @@ void tempDisp::showCursor()
 
 void tempDisp::resetCursor()
 {
-	this->digits1.resetCursor();
+	this->digits1.hideCursor();
 }
 
 void tempDisp::uploadValue(float value)

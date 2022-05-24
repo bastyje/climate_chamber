@@ -14,7 +14,7 @@ tempDispBase::tempDispBase()
     unit.setLinespacing(0);
     unit.setTypedText(touchgfx::TypedText(T___SINGLEUSE_4FSJ));
 
-    digits1.setXY(15, 2);
+    digits1.setXY(0, 2);
 
     add(unit);
     add(digits1);

@@ -9,8 +9,7 @@ void digits::initialize()
 {
     digitsBase::initialize();
 
-	this->oldCursorPosition = 0;
-	this->newCursorPosition = 0;
+	this->cursorPosition = 0;
 
     this->boxes.add(&this->decimalsBox);
     this->boxes.add(&this->onesBox);
@@ -22,10 +21,7 @@ void digits::initialize()
     this->digitsTab.add(this->tens);
     this->digitsTab.add(this->hundreds);
 
-    this->values.add(0);
-    this->values.add(0);
-    this->values.add(0);
-    this->values.add(0);
+    this->value = 0;
     this->updateValue();
 
     this->onesBox.setVisible(false);
@@ -43,10 +39,12 @@ void digits::changeCursorPosition(int direction)
 {
 	this->resetCursor();
 
-	this->newCursorPosition += direction;
+	this->cursorPosition += direction;
 
-	if (this->newCursorPosition == -1) this->newCursorPosition = 0;
-	else if (this->newCursorPosition == 4) this->newCursorPosition = 3;
+	if (this->cursorPosition == this->minCursor - 1)
+		this->cursorPosition = this->minCursor;
+	else if (this->cursorPosition == this->maxCursor + 1)
+		this->cursorPosition = this->maxCursor;
 
 	this->showCursor();
 }
@@ -55,63 +53,95 @@ void digits::changeValue(int value)
 {
 	switch (value) {
 	case 1:
-		if (this->values[newCursorPosition] < 9) this->values[newCursorPosition]++;
+		this->increase();
 		break;
 	case -1:
-		if (this->values[newCursorPosition] > 0) this->values[newCursorPosition]--;
+		this->decrease();
 		break;
 	}
 	this->updateValue();
 }
 
-void digits::initializeValue(float value)
-{
-	int hundreds = (int) value / 100;
-	int tens = (int) (value - hundreds * 100) / 10;
-	int ones = (int) (value - hundreds * 100 - tens * 10);
-	int decimals = (int) ((value - hundreds * 100 - tens * 10 - ones) * 10);
+#include <math.h>
 
-	uploadValue(hundreds, tens, ones, decimals);
+void digits::increase()
+{
+	float difference = 1 * pow(10, cursorPosition - 1);
+	if (this->value + difference <= this->max) this->value += difference;
 }
 
-void digits::uploadValue(int hundreds, int tens, int ones, int decimals)
+void digits::decrease()
 {
-	this->values[3] = hundreds;
-	this->values[2] = tens;
-	this->values[1] = ones;
-	this->values[0] = decimals;
+	float difference = 1 * pow(10, cursorPosition - 1);
+	if (this->value - difference >= this->min) this->value -= difference;
+}
 
-	this->updateValue();
+void digits::initializeValue(float value)
+{
+	this->value = value;
+	updateValue();
 }
 
 void digits::updateValue()
 {
-	touchgfx::Unicode::snprintf(decimalsBuffer, DECIMALS_SIZE, "%d", this->values[0]);
-	touchgfx::Unicode::snprintf(onesBuffer, ONES_SIZE, "%d", this->values[1]);
-	touchgfx::Unicode::snprintf(tensBuffer, TENS_SIZE, "%d", this->values[2]);
-	touchgfx::Unicode::snprintf(hundredsBuffer, HUNDREDS_SIZE, "%d", this->values[3]);
+	int hundreds = (int) abs(this->value) / 100;
+	int tens = (int) (abs(this->value) - hundreds * 100) / 10;
+	int ones = (int) abs(this->value) - hundreds * 100 - tens * 10;
+	int decimals = (int) ((abs(this->value) - hundreds * 100 - tens * 10 - ones) * 10);
+
+	touchgfx::Unicode::snprintf(decimalsBuffer, DECIMALS_SIZE, "%d", decimals);
+	touchgfx::Unicode::snprintf(onesBuffer, ONES_SIZE, "%d", ones);
+	touchgfx::Unicode::snprintf(tensBuffer, TENS_SIZE, "%d", tens);
+	touchgfx::Unicode::snprintf(hundredsBuffer, HUNDREDS_SIZE, "%d", hundreds);
+	this->minus.setVisible(this->value < 0);
 
 	this->hundreds.invalidate();
 	this->tens.invalidate();
 	this->ones.invalidate();
 	this->decimals.invalidate();
+	this->minus.invalidate();
 }
 
 void digits::showCursor()
 {
-	this->boxes[newCursorPosition]->setVisible(true);
-	this->boxes[newCursorPosition]->invalidate();
+	this->boxes[cursorPosition]->setVisible(true);
+	this->boxes[cursorPosition]->invalidate();
 }
 
 void digits::resetCursor()
 {
-	this->boxes[newCursorPosition]->setVisible(false);
-	this->boxes[newCursorPosition]->invalidate();
+	this->boxes[cursorPosition]->setVisible(false);
+	this->boxes[cursorPosition]->invalidate();
+}
+
+void digits::hideCursor()
+{
+	this->boxes[cursorPosition]->setVisible(false);
+	this->boxes[cursorPosition]->invalidate();
+	this->cursorPosition = this->minCursor;
 }
 
 float digits::getValue()
 {
-	float ret = (((float) this->values[3]) * 100 + ((float) this->values[2]) * 10 + ((float) this->values[1])  + ((float) this->values[0]) / 10);
-	return ret;
+	return this->value;
 }
+
+void digits::setCursorRange(int min, int max)
+{
+	this->minCursor = min;
+	this->maxCursor = max;
+	this->cursorPosition = min;
+	if (min > 0)
+	{
+		this->dot.setVisible(false);
+		this->decimals.setVisible(false);
+	}
+}
+
+void digits::setValueRange(float min, float max)
+{
+	this->max = max;
+	this->min = min;
+}
+
 

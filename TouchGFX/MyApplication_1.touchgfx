@@ -417,9 +417,8 @@
           {
             "Type": "CustomContainerInstance",
             "Name": "digits1",
-            "X": 15,
             "Y": 2,
-            "Width": 69,
+            "Width": 84,
             "Height": 33,
             "CustomContainerDefinitionName": "digits"
           }
@@ -447,9 +446,8 @@
           {
             "Type": "CustomContainerInstance",
             "Name": "digits1",
-            "X": 15,
             "Y": 2,
-            "Width": 69,
+            "Width": 84,
             "Height": 33,
             "CustomContainerDefinitionName": "digits"
           }
@@ -458,13 +456,13 @@
       },
       {
         "Name": "digits",
-        "Width": 69,
+        "Width": 84,
         "Height": 33,
         "Components": [
           {
             "Type": "Image",
             "Name": "decimalsBox",
-            "X": 49,
+            "X": 64,
             "Y": 16,
             "Width": 7,
             "Height": 12,
@@ -474,7 +472,7 @@
           {
             "Type": "Image",
             "Name": "onesBox",
-            "X": 30,
+            "X": 45,
             "Y": 5,
             "Width": 15,
             "Height": 25,
@@ -484,7 +482,7 @@
           {
             "Type": "Image",
             "Name": "tensBox",
-            "X": 15,
+            "X": 30,
             "Y": 5,
             "Width": 15,
             "Height": 25,
@@ -494,6 +492,7 @@
           {
             "Type": "Image",
             "Name": "hundredsBox",
+            "X": 15,
             "Y": 5,
             "Width": 15,
             "Height": 25,
@@ -503,7 +502,7 @@
           {
             "Type": "TextArea",
             "Name": "decimals",
-            "X": 49,
+            "X": 64,
             "Y": 15,
             "Width": 7,
             "Height": 15,
@@ -519,7 +518,7 @@
           {
             "Type": "TextArea",
             "Name": "dot",
-            "X": 44,
+            "X": 59,
             "Y": 15,
             "Width": 7,
             "Height": 15,
@@ -530,7 +529,7 @@
           {
             "Type": "TextArea",
             "Name": "ones",
-            "X": 30,
+            "X": 45,
             "Width": 15,
             "Height": 33,
             "TextId": "__SingleUse_R12E",
@@ -545,7 +544,7 @@
           {
             "Type": "TextArea",
             "Name": "tens",
-            "X": 15,
+            "X": 30,
             "Width": 15,
             "Height": 33,
             "TextId": "__SingleUse_KLYP",
@@ -560,6 +559,7 @@
           {
             "Type": "TextArea",
             "Name": "hundreds",
+            "X": 15,
             "Width": 15,
             "Height": 33,
             "TextId": "__SingleUse_VEFE",
@@ -570,6 +570,16 @@
               "UseBuffer": true,
               "BufferSize": 10
             }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "minus",
+            "Width": 15,
+            "Height": 33,
+            "Visible": false,
+            "TextId": "__SingleUse_O167",
+            "TextRotation": "0",
+            "AutoSize": true
           }
         ],
         "Interactions": []

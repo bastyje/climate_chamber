@@ -84,9 +84,8 @@ void mainScreenView::updateData(float *data)
 void mainScreenView::sendRequest()
 {
 	float data[3];
-	data[0] = 1;
-	data[1] = this->tempWindow1.getTemperature();
-	data[2] = this->humWindow1.getHumidity();
+	data[0] = this->tempWindow1.getTemperature();
+	data[1] = this->humWindow1.getHumidity();
 	this->presenter->sendRequest(data);
 }
 

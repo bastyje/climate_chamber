@@ -34,6 +34,7 @@ protected:
     touchgfx::TextAreaWithOneWildcard ones;
     touchgfx::TextAreaWithOneWildcard tens;
     touchgfx::TextAreaWithOneWildcard hundreds;
+    touchgfx::TextArea minus;
 
     /*
      * Wildcard Buffers

@@ -71,7 +71,8 @@ KEEP extern const touchgfx::Unicode::UnicodeChar texts_all_languages[] TEXT_LOCA
     0x31, 0x30, 0x30, 0x0, // @92 "100"
     0xb0, 0x43, 0x0, // @96 "?C"
     0x25, 0x0, // @99 "%"
-    0x2e, 0x0 // @101 "."
+    0x2d, 0x0, // @101 "-"
+    0x2e, 0x0 // @103 "."
 };
 TEXT_LOCATION_FLASH_PRAGMA
 KEEP extern uint32_t const indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE;
