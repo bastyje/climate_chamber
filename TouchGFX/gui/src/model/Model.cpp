@@ -31,6 +31,11 @@ void Model::tick()
 		this->modelListener->reportError(r2.flag);
 	}
 
+	if (r2.flag == -250)
+	{
+		this->modelListener->reportError(r2.flag);
+	}
+
 	float data[] = { r2.temp, r2.hum };
 
 	if (firstRun == 1 && r2.flag == 0)

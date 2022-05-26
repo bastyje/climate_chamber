@@ -92,7 +92,7 @@ osThreadId_t sendRequestTaskHandle;
 const osThreadAttr_t sendRequestTask_attributes = {
   .name = "sendRequestTask",
   .priority = (osPriority_t) osPriorityNormal,
-  .stack_size = 256 * 4
+  .stack_size = 512 * 4
 };
 /* Definitions for messageQ1 */
 extern osMessageQueueId_t messageQ1Handle;
@@ -975,13 +975,12 @@ void LCD_Delay(uint32_t Delay)
 #include <stdio.h>
 #include <stdlib.h>
 
-char *checkSum(char *str)
+uint8_t *checkSum(uint8_t *str, int len)
 {
-    int l = strlen(str);
-    unsigned char b = 0, j, k;
-    char ch;
+    uint8_t b = 0, j, k;
+    uint8_t ch;
 
-    for (int i = 0; i < l; i++)
+    for (int i = 0; i < len; i++)
     {
         ch = str[i];
         j = ch;
@@ -995,47 +994,56 @@ char *checkSum(char *str)
     k = b % 16;
     if (k < 10) k += 48;
     else k+= 55;
-    char *string = malloc(3);
-    sprintf(string, "%c%c", (char) j, (char) k);
+    uint8_t *string = malloc(2);
+    string[0] = j;
+    string[1] = k;
     return string;
 }
 
-const unsigned char CHAR_TO_NUMBER = 48;
-const unsigned char STX = 2;
-const unsigned char ETX = 3;
+uint8_t *createStringToCheckSum(uint8_t *str, int start, int end)
+{
+	uint8_t *response = (uint8_t *) malloc((end - start + 1) * sizeof(uint8_t));
+	for (int i = 0; i <= end - start; i++)
+		response[i] = str[i + start];
+	return response;
+}
 
-char *tempToChar(float value)
+const uint8_t CHAR_TO_NUMBER = 48;
+const uint8_t STX = 2;
+const uint8_t ETX = 3;
+
+uint8_t *tempToChar(float value)
 {
 	int hundreds = (int) value / 100;
 	int tens = (int) (value - hundreds * 100) / 10;
 	int ones = (int) (value - hundreds * 100 - tens * 10);
 	int decimals = (int) ((value - hundreds * 100 - tens * 10 - ones) * 10);
 
-	char *temp = malloc(4);
+	uint8_t *temp = malloc(4);
 
-	temp[0] = CHAR_TO_NUMBER + (char) hundreds;
-	temp[1] = CHAR_TO_NUMBER + (char) tens;
-	temp[2] = CHAR_TO_NUMBER + (char) ones;
-	temp[3] = CHAR_TO_NUMBER + (char) decimals;
+	temp[0] = CHAR_TO_NUMBER + (uint8_t) hundreds;
+	temp[1] = CHAR_TO_NUMBER + (uint8_t) tens;
+	temp[2] = CHAR_TO_NUMBER + (uint8_t) ones;
+	temp[3] = CHAR_TO_NUMBER + (uint8_t) decimals;
 
 	return temp;
 }
 
-char *humToChar(float value)
+uint8_t *humToChar(float value)
 {
 	int hundreds = (int) value / 100;
 	int tens = (int) (value - hundreds * 100) / 10;
 	int ones = (int) (value - hundreds * 100 - tens * 10);
 
-	char *hum = malloc(2);
+	uint8_t *hum = malloc(2);
 
-	hum[0] = CHAR_TO_NUMBER + (char) tens;
-	hum[1] = CHAR_TO_NUMBER + (char) ones;
+	hum[0] = CHAR_TO_NUMBER + (uint8_t) tens;
+	hum[1] = CHAR_TO_NUMBER + (uint8_t) ones;
 
 	return hum;
 }
 
-void prepareRequestString(transfer r, char *rs)
+void prepareRequestString(transfer r, uint8_t *rs, uint8_t *canal)
 {
 	if (r.flag == 0)
 	{
@@ -1043,19 +1051,20 @@ void prepareRequestString(transfer r, char *rs)
 		rs[1] = 0;       // co to jest
 		rs[2] = 63;
 
-		char *str = malloc(3);
-		sprintf(str, "%c%c", rs[1], rs[2]);
-		char *cs = checkSum(str);
+		uint8_t *str = createStringToCheckSum(rs, 1, 2);
+		uint8_t *cs = checkSum(str, 2);
 
 		rs[3] = cs[0];
 		rs[4] = cs[1];
 		rs[5] = ETX;
 
+		free(str);
+		free(cs);
 	}
 	else if (r.flag == 1)
 	{
-		char *temp = tempToChar(r.temp);
-		char *hum = humToChar(r.hum);
+		uint8_t *temp = tempToChar(r.temp);
+		uint8_t *hum = humToChar(r.hum);
 
 		rs[0] = STX;
 		rs[1] = 0; // co to jest
@@ -1071,23 +1080,24 @@ void prepareRequestString(transfer r, char *rs)
 		rs[11] = 'R';
 
 		for (int i = 12; i < 28; i++)
-			rs[i] = '0';
+			rs[i] = canal[i - 12];
 
-		char *str = malloc(27);
-		strncpy(str, rs+1, 27);
+		uint8_t *str = createStringToCheckSum(rs, 1, 27);
+		uint8_t *cs = checkSum(str, 27);
 
-		//char *cs = checkSum(str);
+		rs[28] = cs[0];
+		rs[29] = cs[1];
 
-		rs[28] = 2 + CHAR_TO_NUMBER; //cs[0];
-		rs[29] = 2 + CHAR_TO_NUMBER; //cs[1];
 		rs[30] = ETX;
 
 		free(temp);
 		free(hum);
+		free(cs);
+		free(str);
 	}
 }
 
-void parseResponse(transfer *t, char *R)
+void parseResponse(transfer *t, char *R, uint8_t *canal)
 {
 	char *tempRaw = "%c%c%c.%c", *temp = malloc(6);
 	char *humRaw = "%c%c", *hum = malloc(3);
@@ -1100,6 +1110,18 @@ void parseResponse(transfer *t, char *R)
 
 	free(temp);
 	free(hum);
+
+	if (canal != NULL)
+	{
+		for (int i = 32; i <= 47; i++)
+			canal[i - 32] = R[i];
+	}
+}
+
+void clearRx(uint8_t *Rx, int len)
+{
+	for (int i = 0; i < len; i++)
+		Rx[i] = 0;
 }
 
 /* USER CODE END 4 */
@@ -1129,6 +1151,7 @@ __weak void TouchGFX_Task(void *argument)
 * @retval None
 */
 
+uint8_t *cs, rcs[2];
 uint8_t RxDataRequest[51], RxDataChangeRequest[6], Tx[31];
 transfer t1, r1;
 int state;
@@ -1140,6 +1163,7 @@ void StartsendRequestTask(void *argument)
   /* Infinite loop */
 	int sendCount = 0;
 	int notOkCount = 0;
+	uint8_t canal[16];
 	t1.flag = -1;
 	r1.flag = 0;
 	for(;;)
@@ -1147,7 +1171,7 @@ void StartsendRequestTask(void *argument)
 		//r1.flag = 0;
 		xQueueReceive(messageQ2, &r1, 0);
 
-		prepareRequestString(r1, (char *) Tx);
+		prepareRequestString(r1, Tx, canal);
 
 		if (((int) r1.flag) == 0)
 		{
@@ -1156,7 +1180,14 @@ void StartsendRequestTask(void *argument)
 			{
 				notOkCount = 0;
 				t1.flag = 0;
-				parseResponse(&t1, (char *) RxDataRequest);
+				parseResponse(&t1, (char *) RxDataRequest, canal);
+				uint8_t *cstr = createStringToCheckSum(RxDataRequest, 1, 47);
+				cs = checkSum(cstr, 47);
+
+				free(cstr);
+
+				rcs[0] = RxDataRequest[48];
+				rcs[1] = RxDataRequest[49];
 			}
 			else
 			{
@@ -1176,7 +1207,7 @@ void StartsendRequestTask(void *argument)
 			HAL_UART_Receive(&huart1, RxDataChangeRequest, 6, 2000);
 
 			sendCount++;
-			parseResponse(&t1, (char *) RxDataChangeRequest);
+			parseResponse(&t1, (char *) RxDataChangeRequest, NULL);
 
 			if (sendCount > 10)
 			{
@@ -1190,7 +1221,26 @@ void StartsendRequestTask(void *argument)
 				r1.flag = 0;
 				r1.temp = 0;
 				r1.hum = 0;
+				clearRx(RxDataChangeRequest, 6);
 			}
+
+			uint8_t *cstr = createStringToCheckSum(RxDataChangeRequest, 1, 2);
+			cs = checkSum(cstr, 2);
+
+			free(cstr);
+
+			rcs[0] = RxDataChangeRequest[3];
+			rcs[1] = RxDataChangeRequest[4];
+		}
+
+		if (cs != NULL)
+		{
+			if (cs[0] != rcs[0] || cs[1] != rcs[1])
+			{
+				t1.flag = -250;
+			}
+
+			free(cs);
 		}
 
 		xQueueSend(messageQ1, &t1, 500);
