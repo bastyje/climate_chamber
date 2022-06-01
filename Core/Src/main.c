@@ -76,7 +76,7 @@ LTDC_HandleTypeDef hltdc;
 
 SPI_HandleTypeDef hspi5;
 
-UART_HandleTypeDef huart1;
+UART_HandleTypeDef huart4;
 
 SDRAM_HandleTypeDef hsdram1;
 
@@ -92,15 +92,15 @@ osThreadId_t sendRequestTaskHandle;
 const osThreadAttr_t sendRequestTask_attributes = {
   .name = "sendRequestTask",
   .priority = (osPriority_t) osPriorityNormal,
-  .stack_size = 512 * 4
+  .stack_size = 128 * 4
 };
 /* Definitions for messageQ1 */
-extern osMessageQueueId_t messageQ1Handle;
+osMessageQueueId_t messageQ1Handle;
 const osMessageQueueAttr_t messageQ1_attributes = {
   .name = "messageQ1"
 };
 /* Definitions for messageQ2 */
-extern osMessageQueueId_t messageQ2Handle;
+osMessageQueueId_t messageQ2Handle;
 const osMessageQueueAttr_t messageQ2_attributes = {
   .name = "messageQ2"
 };
@@ -118,7 +118,7 @@ static void MX_SPI5_Init(void);
 static void MX_FMC_Init(void);
 static void MX_LTDC_Init(void);
 static void MX_DMA2D_Init(void);
-static void MX_USART1_UART_Init(void);
+static void MX_huart4_Init(void);
 void TouchGFX_Task(void *argument);
 void StartsendRequestTask(void *argument);
 
@@ -195,7 +195,7 @@ int main(void)
   MX_FMC_Init();
   MX_LTDC_Init();
   MX_DMA2D_Init();
-  MX_USART1_UART_Init();
+  MX_huart4_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
 
@@ -218,10 +218,10 @@ int main(void)
 
   /* Create the queue(s) */
   /* creation of messageQ1 */
-  //messageQ1Handle = osMessageQueueNew (5, sizeof(uint8_t), &messageQ1_attributes);
+  messageQ1Handle = osMessageQueueNew (5, sizeof(uint8_t), &messageQ1_attributes);
 
   /* creation of messageQ2 */
-  //messageQ2Handle = osMessageQueueNew (5, sizeof(uint8_t), &messageQ2_attributes);
+  messageQ2Handle = osMessageQueueNew (5, sizeof(uint8_t), &messageQ2_attributes);
 
   /* USER CODE BEGIN RTOS_QUEUES */
   messageQ1 = xQueueGenericCreate(1, sizeof(transfer), 0);
@@ -234,7 +234,7 @@ int main(void)
   GUI_TaskHandle = osThreadNew(TouchGFX_Task, NULL, &GUI_Task_attributes);
 
   /* creation of sendRequestTask */
-  //sendRequestTaskHandle = osThreadNew(StartsendRequestTask, NULL, &sendRequestTask_attributes);
+  sendRequestTaskHandle = osThreadNew(StartsendRequestTask, NULL, &sendRequestTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -523,35 +523,35 @@ static void MX_SPI5_Init(void)
 }
 
 /**
-  * @brief USART1 Initialization Function
+  * @brief huart4 Initialization Function
   * @param None
   * @retval None
   */
-static void MX_USART1_UART_Init(void)
+static void MX_huart4_Init(void)
 {
 
-  /* USER CODE BEGIN USART1_Init 0 */
+  /* USER CODE BEGIN huart4_Init 0 */
 
-  /* USER CODE END USART1_Init 0 */
+  /* USER CODE END huart4_Init 0 */
 
-  /* USER CODE BEGIN USART1_Init 1 */
+  /* USER CODE BEGIN huart4_Init 1 */
 
-  /* USER CODE END USART1_Init 1 */
-  huart1.Instance = USART1;
-  huart1.Init.BaudRate = 9600;
-  huart1.Init.WordLength = UART_WORDLENGTH_8B;
-  huart1.Init.StopBits = UART_STOPBITS_1;
-  huart1.Init.Parity = UART_PARITY_NONE;
-  huart1.Init.Mode = UART_MODE_TX_RX;
-  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
-  if (HAL_UART_Init(&huart1) != HAL_OK)
+  /* USER CODE END huart4_Init 1 */
+  huart4.Instance = UART4;
+  huart4.Init.BaudRate = 9600;
+  huart4.Init.WordLength = UART_WORDLENGTH_8B;
+  huart4.Init.StopBits = UART_STOPBITS_1;
+  huart4.Init.Parity = UART_PARITY_NONE;
+  huart4.Init.Mode = UART_MODE_TX_RX;
+  huart4.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart4.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart4) != HAL_OK)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN USART1_Init 2 */
+  /* USER CODE BEGIN huart4_Init 2 */
 
-  /* USER CODE END USART1_Init 2 */
+  /* USER CODE END huart4_Init 2 */
 
 }
 
@@ -1048,7 +1048,7 @@ void prepareRequestString(transfer r, uint8_t *rs, uint8_t *canal)
 	if (r.flag == 0)
 	{
 		rs[0] = STX;
-		rs[1] = 0;       // co to jest
+		rs[1] = 1 + CHAR_TO_NUMBER;       // co to jest
 		rs[2] = 63;
 
 		uint8_t *str = createStringToCheckSum(rs, 1, 2);
@@ -1067,7 +1067,7 @@ void prepareRequestString(transfer r, uint8_t *rs, uint8_t *canal)
 		uint8_t *hum = humToChar(r.hum);
 
 		rs[0] = STX;
-		rs[1] = 0; // co to jest
+		rs[1] = 1 + CHAR_TO_NUMBER; // co to jest
 		rs[2] = 'T';
 		rs[3] = temp[0];
 		rs[4] = temp[1];
@@ -1175,13 +1175,13 @@ void StartsendRequestTask(void *argument)
 
 		if (((int) r1.flag) == 0)
 		{
-			HAL_UART_Transmit(&huart1, (uint8_t *) Tx, 6, 500);
-			if ((state = HAL_UART_Receive(&huart1, RxDataRequest, 51, 500)) == HAL_OK)
+			HAL_UART_Transmit(&huart4, (uint8_t *) Tx, 6, 500);
+			if ((state = HAL_UART_Receive(&huart4, RxDataRequest, 51, 500)) == HAL_OK)
 			{
 				notOkCount = 0;
 				t1.flag = 0;
 				parseResponse(&t1, (char *) RxDataRequest, canal);
-				uint8_t *cstr = createStringToCheckSum(RxDataRequest, 1, 47);
+				uint8_t *cstr = createStringToCheckSum(RxDataRequest, 0, 47);
 				cs = checkSum(cstr, 47);
 
 				free(cstr);
@@ -1203,8 +1203,8 @@ void StartsendRequestTask(void *argument)
 		}
 		else if (((int) r1.flag) == 1)
 		{
-			HAL_UART_Transmit(&huart1, (uint8_t *) Tx, 31, 1000);
-			HAL_UART_Receive(&huart1, RxDataChangeRequest, 6, 2000);
+			HAL_UART_Transmit(&huart4, (uint8_t *) Tx, 31, 1000);
+			HAL_UART_Receive(&huart4, RxDataChangeRequest, 6, 2000);
 
 			sendCount++;
 			parseResponse(&t1, (char *) RxDataChangeRequest, NULL);
@@ -1224,7 +1224,7 @@ void StartsendRequestTask(void *argument)
 				clearRx(RxDataChangeRequest, 6);
 			}
 
-			uint8_t *cstr = createStringToCheckSum(RxDataChangeRequest, 1, 2);
+			uint8_t *cstr = createStringToCheckSum(RxDataChangeRequest, 0, 2);
 			cs = checkSum(cstr, 2);
 
 			free(cstr);
@@ -1237,7 +1237,7 @@ void StartsendRequestTask(void *argument)
 		{
 			if (cs[0] != rcs[0] || cs[1] != rcs[1])
 			{
-				t1.flag = -250;
+				//t1.flag = -250;
 			}
 
 			free(cs);
